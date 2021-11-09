@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "ClassContact.hpp"
 
 class	PhoneBook {
 
-	int		_nbContacts;
+private:
+
+	Contact	_cList[8];
 
 public:
 

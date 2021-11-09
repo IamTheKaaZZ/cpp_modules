@@ -10,3 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ClassPhoneBook.hpp"
+
+PhoneBook::PhoneBook(void) {
+
+}
+
+PhoneBook::~PhoneBook(void) {
+
+}
+
+void    PhoneBook::setContact(void) {
+
+}
+
+void    PhoneBook::getList(void) const {
+
+}
+
+void    PhoneBook::getContact(void) const {
+
+}

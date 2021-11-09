@@ -67,7 +67,7 @@ $(NAME):	$(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@$(ECHO) "$(GREEN) $(NAME) executable CREATED$(QUIT)"
 
-$(DIR_O)%.o:	%.cpp
+$(DIR_O)%.o:	%.cpp $(INCL)
 	@$(CC) -c $(CFLAGS) $< -o $@
 	@$(ECHO) "$(GREEN) $@$(QUIT)"
 

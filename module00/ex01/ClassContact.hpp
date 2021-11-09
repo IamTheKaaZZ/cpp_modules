@@ -14,11 +14,11 @@
 
 class	Contact {
 
-	static int		nbInst;
-	std::string		_first_name;
-	std::string		_last_name;
+	static size_t	_nbInst;
+	std::string		_firstName;
+	std::string		_lastName;
 	std::string		_nickname;
-	std::string		_phone_number;
-	std::string		_darkest_secret;
+	std::string		_phoneNumber;
+	std::string		_darkestSecret;
 
 };
