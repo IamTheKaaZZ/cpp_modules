@@ -6,28 +6,31 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:54:53 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/08 16:57:10 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/09 16:30:05 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include "PhoneBook.class.hpp"
+#include "Contact.class.hpp"
 
-int	main(int argc, char **argv) {
+int	main(void) {
 
 	std::string	input;
+	PhoneBook	pb;
 
-	while (argc) {
-		std::cout << "CrAPSoft >";
+	while (true) {
+		std::cout << "CrAPSoft > ";
 		getline(std::cin, input);
 		if (input.compare("ADD") != 0 && input.compare("SEARCH") != 0
 			&& input.compare("EXIT") != 0)
 			continue ;
 		if (!input.compare("ADD")) {
-
+			pb.setContact();
 		}
 		else if (!input.compare("SEARCH")) {
-
+			pb.getList();
 		}
 		else if (!input.compare("EXIT")) {
 			break ;

@@ -49,10 +49,10 @@ QUIT	= \033[0m
 # VARIABLES
 
 NAME	=	crapsoft
-SRCS	=	$(wildcard %.cpp)
+SRCS	=	$(wildcard *.cpp)
 DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
-INCL	=	$(wildcard %.hpp)
+INCL	=	$(wildcard *.hpp)
 CC		=	clang++
 CFLAGS	=	-Wall -Wextra -Werror
 DBFLAGS =	-g -fsanitize=address

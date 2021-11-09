@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClassPhoneBook.hpp                                 :+:      :+:    :+:   */
+/*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 16:58:40 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/08 17:08:35 by bcosters         ###   ########.fr       */
+/*   Created: 2021/11/09 14:58:30 by bcosters          #+#    #+#             */
+/*   Updated: 2021/11/09 16:54:35 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClassContact.hpp"
+#ifndef PHONEBOOK_CLASS_H
+# define PHONEBOOK_CLASS_H
+
+#include "Contact.class.hpp"
+#include <iomanip>
 
 class	PhoneBook {
-
-private:
-
-	Contact	_cList[8];
 
 public:
 
@@ -27,4 +27,11 @@ public:
 	void	getList(void) const;
 	void	getContact(int index) const;
 
+private:
+
+	Contact	_cList[8];
+	size_t	_oldest;
+
 };
+
+#endif
