@@ -6,11 +6,16 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:59:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/10 12:13:36 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/10 13:16:55 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
+#include <iostream>
+#include <ctime>
+
+using std::cout;
+using std::endl;
 
 // Constructors / Destructors
 
@@ -18,12 +23,16 @@ Account::Account(void) {	//DEFAULT
 
 }
 
-Account::Account(int initial_deposit) {
+Account::Account(int initial_deposit) : _amount(initial_deposit) {
+	_accountIndex = _nbAccounts;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 
+	_nbAccounts += 1;
 }
 
 Account::~Account(void) {
-
+	_nbAccounts -= 1;
 }
 
 //Public Class functions
@@ -69,11 +78,17 @@ void	displayAccountsInfos(void) {
 
 //	Private
 
-static int	_nbAccounts = 0;
-static int	_totalAmounts = 0;
-static int	_totalNbDeposits = 0;
-static int	_totalNbWithdrawals = 0;
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int	Account::_totalNbWithdrawals = 0;
 
 void	_displayTimestamp(void) {
+	time_t		raw;
+	struct tm 	*timeinfo;
+	char		buff[80];
 
+	time(&raw);
+	timeinfo = localtime(&raw);
+	strftime(buff, 80, "", timeinfo);
 }
