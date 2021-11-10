@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:58:21 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/09 17:03:27 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:09:39 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,23 @@
 # include <string>
 # include <iostream>
 
+using std::cin;
+using std::cout;
+using std::string;
+using std::endl;
+
 class	Contact {
 
 public:
 
-	std::string		firstName;
-	std::string		lastName;
-	std::string		nickname;
-	std::string		phoneNumber;
-	std::string		darkestSecret;
+	string		firstName;
+	string		lastName;
+	string		nickname;
+	string		phoneNumber;
+	string		darkestSecret;
 
 	Contact(void);
-	Contact(std::string a, std::string b, std::string c, std::string d, std::string e);
+	Contact(string a, string b, string c, string d, string e);
 	~Contact(void);
 	bool	isEmpty(void) const;
 

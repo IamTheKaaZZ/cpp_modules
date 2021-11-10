@@ -6,31 +6,31 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:09:21 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/09 17:03:50 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:25:51 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.class.hpp"
 
 Contact::Contact(void) {
-	std::cout << "Empty Contact constructor called." << std::endl;
+	// cout << "Empty Contact constructor called." << endl;
 	return;
 }
 
-Contact::Contact(std::string a, std::string b, std::string c, std::string d, std::string e) :
+Contact::Contact(string a, string b, string c, string d, string e) :
 	firstName(a),
 	lastName(b),
 	nickname(c),
 	phoneNumber(d),
 	darkestSecret(e)
 {
-	std::cout << "Contact constructor called." << std::endl;
+	// cout << "Contact constructor called." << endl;
 	return;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact destructor called." << std::endl;
+	// cout << "Contact destructor called." << endl;
 	return;
 }
 

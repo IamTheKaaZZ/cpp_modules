@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:58:20 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/09 17:23:36 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:40:53 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 PhoneBook::PhoneBook(void) {
 	_oldest = 0;
-	std::cout << "Contact constructor called." << std::endl;
+	// cout << "PhoneBook constructor called." << endl;
 	return;
 }
 
 PhoneBook::~PhoneBook(void) {
-	std::cout << "Contact destructor called." << std::endl;
+	// cout << "PhoneBook destructor called." << endl;
 	return;
 }
 
 void    PhoneBook::setContact(void) {
-	std::string fName;
-	std::string lName;
-	std::string nName;
-	std::string pNum;
-	std::string dSec;
+	string fName;
+	string lName;
+	string nName;
+	string pNum;
+	string dSec;
 
-	std::cout << "First name: ";
-	getline(std::cin, fName);
-	std::cout << "Last name: ";
-	getline(std::cin, lName);
-	std::cout << "Nickname: ";
-	getline(std::cin, nName);
-	std::cout << "Phone Number: ";
-	getline(std::cin, pNum);
-	std::cout << "Darkest secret: ";
-	getline(std::cin, dSec);
+	cout << "First name: ";
+	getline(cin, fName);
+	cout << "Last name: ";
+	getline(cin, lName);
+	cout << "Nickname: ";
+	getline(cin, nName);
+	cout << "Phone Number: ";
+	getline(cin, pNum);
+	cout << "Darkest secret: ";
+	getline(cin, dSec);
 	size_t	i = -1;
 	while (++i < 8)
 	{
@@ -59,43 +59,57 @@ void    PhoneBook::setContact(void) {
 }
 
 void    PhoneBook::getList(void) const {
-	std::cout << std::setw(10) << "index";
-	std::cout << "|";
-	std::cout << std::setw(10) << "first name";
-	std::cout << "|";
-	std::cout << std::setw(10) << "last name";
-	std::cout << "|";
-	std::cout << std::setw(10) << "nickname" << std::endl;
+	cout << setw(10) << "index";
+	cout << "|";
+	cout << setw(10) << "first name";
+	cout << "|";
+	cout << setw(10) << "last name";
+	cout << "|";
+	cout << setw(10) << "nickname" << endl;
 	size_t	i = -1;
 	while (!_cList[++i].isEmpty() && i < 8)
 	{
-		std::cout << std::setw(10) << i;
-		std::cout << "|";
-		if (_cList[i].firstName.length() > 10)
-			std::cout << std::setw(10) << _cList[i].firstName;
-		else
-			std::cout << std::setw(10) << _cList[i].firstName;
-		std::cout << "|";
-		std::cout << std::setw(10) << _cList[i].lastName;
-		std::cout << "|";
-		std::cout << std::setw(10) << _cList[i].nickname << std::endl;
+		cout << setw(10) << i;
+		cout << "|";
+		_checkColumn(_cList[i].firstName);
+		cout << "|";
+		_checkColumn(_cList[i].lastName);
+		cout << "|";
+		_checkColumn(_cList[i].nickname);
+		cout << endl;
 	}
 }
 
-void    PhoneBook::getContact(int index) const {
-	if (index < 0)
+void	PhoneBook::_checkColumn(string str) const {
+	if (str.length() > 10)
+		cout << setw(9) << str.substr(0, 9) << '.';
+	else
+		cout << setw(10) << str;
+}
+
+void    PhoneBook::getContact(string input) const {
+	if (!_isNumber(input))
 	{
-		std::cout << "Wrong input." << std::endl;
+		cout << "Input is not a positive number." << endl;
 		return;
 	}
+	int index = atoi(input.c_str());
 	if (_cList[index].isEmpty())
 	{
-		std::cout << "No Contact found on index." << std::endl;
+		cout << "No Contact found on index." << endl;
 		return;
 	}
-	std::cout << _cList[index].firstName << std::endl;
-	std::cout << _cList[index].lastName << std::endl;
-	std::cout << _cList[index].nickname << std::endl;
-	std::cout << _cList[index].phoneNumber << std::endl;
-	std::cout << _cList[index].darkestSecret << std::endl;
+	cout << _cList[index].firstName << endl;
+	cout << _cList[index].lastName << endl;
+	cout << _cList[index].nickname << endl;
+	cout << _cList[index].phoneNumber << endl;
+	cout << _cList[index].darkestSecret << endl;
+}
+
+bool	PhoneBook::_isNumber(string input) const {
+	for (string::iterator it = input.begin(); it != input.end(); ++it) {
+		if (std::isdigit(*it) == 0)
+			return false;
+	}
+	return true;
 }

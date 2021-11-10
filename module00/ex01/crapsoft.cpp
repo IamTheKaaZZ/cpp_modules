@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:54:53 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/09 16:30:05 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:26:57 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ int	main(void) {
 		}
 		else if (!input.compare("SEARCH")) {
 			pb.getList();
+			std::cout << "Index? > ";
+			getline(std::cin, input);
+			pb.getContact(input);
 		}
 		else if (!input.compare("EXIT")) {
 			break ;

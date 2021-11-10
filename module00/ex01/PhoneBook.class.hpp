@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 14:58:30 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/09 16:54:35 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/10 11:25:56 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,30 @@
 #include "Contact.class.hpp"
 #include <iomanip>
 
+using std::cin;
+using std::cout;
+using std::string;
+using std::endl;
+using std::setw;
+
 class	PhoneBook {
 
-public:
+public:			//Exposed class functions/vars
 
 	PhoneBook(void);	//Constructor
 	~PhoneBook(void);	//Deconstructor
 
 	void	setContact(void);
 	void	getList(void) const;
-	void	getContact(int index) const;
+	void	getContact(string input) const;
 
-private:
+private:		//Helper/Internal functions/vars
 
 	Contact	_cList[8];
 	size_t	_oldest;
+
+	void	_checkColumn(string str) const;
+	bool	_isNumber(string input) const;
 
 };
 
