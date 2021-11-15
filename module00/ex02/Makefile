@@ -76,9 +76,15 @@ $(OBJS):	| $(DIR_O)
 $(DIR_O):
 	@mkdir -p $(DIR_O)
 
+log:	all
+	@$(ECHO) "$(WHITE) Generating output log and git diff$(QUIT)"
+	@./$(NAME) > test_output.log
+	@git diff -U0 --word-diff --no-index -- output.log test_output.log || $(ECHO) "$(WHITE)Exiting diff$(QUIT)"
+
 clean:
 	@$(ECHO) "$(RED)Deleting .o files$(QUIT)"
 	@rm -fr $(DIR_O)
+	@rm -fr test_output.log
 
 fclean:	clean
 	@$(ECHO) "$(RED)Deleting '$(NAME)' executable"
