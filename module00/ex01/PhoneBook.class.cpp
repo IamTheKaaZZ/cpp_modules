@@ -6,11 +6,13 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:58:20 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/10 11:40:53 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:41:05 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
+
+//	DEFAULT Constructor
 
 PhoneBook::PhoneBook(void) {
 	_oldest = 0;
@@ -18,10 +20,14 @@ PhoneBook::PhoneBook(void) {
 	return;
 }
 
+//	Destructor
+
 PhoneBook::~PhoneBook(void) {
 	// cout << "PhoneBook destructor called." << endl;
 	return;
 }
+
+//	Public member functions
 
 void    PhoneBook::setContact(void) {
 	string fName;
@@ -71,20 +77,13 @@ void    PhoneBook::getList(void) const {
 	{
 		cout << setw(10) << i;
 		cout << "|";
-		_checkColumn(_cList[i].firstName);
+		_checkColumn(_cList[i].getFirstname());
 		cout << "|";
-		_checkColumn(_cList[i].lastName);
+		_checkColumn(_cList[i].getLastname());
 		cout << "|";
-		_checkColumn(_cList[i].nickname);
+		_checkColumn(_cList[i].getNickname());
 		cout << endl;
 	}
-}
-
-void	PhoneBook::_checkColumn(string str) const {
-	if (str.length() > 10)
-		cout << setw(9) << str.substr(0, 9) << '.';
-	else
-		cout << setw(10) << str;
 }
 
 void    PhoneBook::getContact(string input) const {
@@ -99,11 +98,20 @@ void    PhoneBook::getContact(string input) const {
 		cout << "No Contact found on index." << endl;
 		return;
 	}
-	cout << _cList[index].firstName << endl;
-	cout << _cList[index].lastName << endl;
-	cout << _cList[index].nickname << endl;
-	cout << _cList[index].phoneNumber << endl;
-	cout << _cList[index].darkestSecret << endl;
+	cout << _cList[index].getFirstname() << endl;
+	cout << _cList[index].getLastname() << endl;
+	cout << _cList[index].getNickname() << endl;
+	cout << _cList[index].getPhonenumber() << endl;
+	cout << _cList[index].getDarkestsecret() << endl;
+}
+
+// Private member functions
+
+void	PhoneBook::_checkColumn(string str) const {
+	if (str.length() > 10)
+		cout << setw(9) << str.substr(0, 9) << '.';
+	else
+		cout << setw(10) << str;
 }
 
 bool	PhoneBook::_isNumber(string input) const {

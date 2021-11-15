@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:09:21 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/10 11:25:51 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:36:38 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ Contact::Contact(void) {
 }
 
 Contact::Contact(string a, string b, string c, string d, string e) :
-	firstName(a),
-	lastName(b),
-	nickname(c),
-	phoneNumber(d),
-	darkestSecret(e)
+	_firstName(a),
+	_lastName(b),
+	_nickname(c),
+	_phoneNumber(d),
+	_darkestSecret(e)
 {
 	// cout << "Contact constructor called." << endl;
 	return;
@@ -35,12 +35,32 @@ Contact::~Contact(void)
 }
 
 bool	Contact::isEmpty(void) const {
-	if (this->firstName.length() == 0
-		&& this->lastName.length() == 0
-		&& this->nickname.length() == 0
-		&& this->phoneNumber.length() == 0
-		&& this->darkestSecret.length() == 0)
+	if (this->_firstName.length() == 0
+		&& this->_lastName.length() == 0
+		&& this->_nickname.length() == 0
+		&& this->_phoneNumber.length() == 0
+		&& this->_darkestSecret.length() == 0)
 		return true;
 	else
 		return false;
+}
+
+string	Contact::getFirstname(void) const {
+	return this->_firstName;
+}
+
+string	Contact::getLastname(void) const {
+	return this->_lastName;
+}
+
+string	Contact::getNickname(void) const {
+	return this->_nickname;
+}
+
+string	Contact::getPhonenumber(void) const {
+	return this->_phoneNumber;
+}
+
+string	Contact::getDarkestsecret(void) const {
+	return this->_darkestSecret;
 }

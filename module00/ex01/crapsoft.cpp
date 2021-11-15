@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:54:53 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/10 11:26:57 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/15 12:42:16 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	main(void) {
 
-	std::string	input;
+	string		input;
 	PhoneBook	pb;
 
 	while (true) {
