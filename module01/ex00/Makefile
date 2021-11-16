@@ -54,7 +54,7 @@ DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
 INCL	=	$(wildcard *.hpp)
 CC		=	clang++
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 DBFLAGS =	-g -fsanitize=address
 
 # RULES
