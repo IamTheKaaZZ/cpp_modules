@@ -79,7 +79,6 @@ $(DIR_O):
 clean:
 	@$(ECHO) "$(RED)Deleting .o files$(QUIT)"
 	@rm -fr $(DIR_O)
-	@rm -fr test_output.log
 
 fclean:	clean
 	@$(ECHO) "$(RED)Deleting '$(NAME)' executable"
