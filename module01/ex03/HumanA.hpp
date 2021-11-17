@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:36:22 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 11:12:44 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:31:29 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include "Weapon.hpp"
 
 using std::string;
+
 class HumanA {
 
 public:
 
+	HumanA(void);
 	HumanA(string name, Weapon& w);
 	~HumanA(void);
 	void	attack(void) const;
@@ -28,8 +30,7 @@ public:
 private:
 
 	string	_name;
-	Weapon*	_w;
-	HumanA(void);
+	Weapon&	_w;
 
 };
 
