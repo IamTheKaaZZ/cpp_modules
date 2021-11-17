@@ -6,31 +6,25 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/16 12:27:13 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:07:14 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include <sstream>
-
-using std::string;
-using std::stringstream;
-using std::cout;
-using std::endl;
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
 int	main(void) {
-	string			str = "HI THIS IS BRAIN";
-	string*			stringPTR = &str;
-	string&			stringREF = str;
-	stringstream	ss;
-	ss << (void *)str.data();
-	cout << "Memory address of original string: " << ss.str() << " - " << str << endl;
-	ss.str(string());
-	ss << stringPTR;
-	cout << "Memory address of stringPTR: " << ss.str() << " - " << *stringPTR << endl;
-	ss.str(string());
-	ss << (void *)stringREF.data();
-	cout << "Memory address of stringREF: " << ss.str() << " - " << stringREF << endl;
-	return 0;
+	Weapon	kitchen = Weapon("ladle");
+	HumanA	bobby = HumanA("bobby", kitchen);
+	bobby.attack();
+	kitchen.setType("golden spoon of cake smiting!");
+	bobby.attack();
+
+	HumanB	Johnny = HumanB("Johnny");
+	Johnny.attack();
+	kitchen.setType("fork, the other philosophers realise they are in the wrong project.");
+	Johnny.setWeapon(kitchen);
+	Johnny.attack();
+	kitchen.setType("knife, stabby stabby.");
+	Johnny.attack();
 }
