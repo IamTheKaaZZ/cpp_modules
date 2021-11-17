@@ -76,9 +76,17 @@ $(OBJS):	| $(DIR_O)
 $(DIR_O):
 	@mkdir -p $(DIR_O)
 
+test:	all
+	@$(ECHO) "$(WHITE) Generating output files and git diff$(QUIT)"
+	@./$(NAME) input.txt good bad
+	@./$(NAME) lorem.txt sit "SIT IDIOT HAHAHAHAHA"
+	@git diff -U0 --word-diff --no-index -- input.txt input.txt.replace || $(ECHO) "$(WHITE)Exiting diff$(QUIT)"
+	@git diff -U0 --word-diff --no-index -- lorem.txt lorem.txt.replace || $(ECHO) "$(WHITE)Exiting diff$(QUIT)"
+
 clean:
 	@$(ECHO) "$(RED)Deleting .o files$(QUIT)"
 	@rm -fr $(DIR_O)
+	@rm -fr *.replace
 
 fclean:	clean
 	@$(ECHO) "$(RED)Deleting '$(NAME)' executable"

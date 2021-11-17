@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 13:14:48 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/17 14:25:49 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,24 @@ int	main(int argc, char **argv) {
 		cerr << "Error opening file." << endl;
 		return 1;
 	}
+	ofstream	ofs(string(argv[1]).append(".replace"));
+	if (!ofs.is_open()) {
+		cerr << "Error opening output file." << endl;
+	}
 	string		needle = argv[2];
 	string		replacement = argv[3];
-	for (string line; getline(ifs, line);) {	//For each line in the file
-
+	size_t		found;
+	for (string line; getline(ifs, line);) {			//For each line in the file
+		while (line.find(needle) != string::npos) {		//While you can find the needle string
+			found = line.find(needle);					//find the starting position of the needle
+			if (found != string::npos) {				//IF the needle is found
+				line.erase(found, needle.length());		//erase the needle from found with its entire length
+				line.insert(found, replacement);		//insert the replacement at position found
+			}
+		}
+		ofs << line << endl;							//Add the line to the outputfile
 	}
 	ifs.close();
+	ofs.close();
 	return 0;
 }
