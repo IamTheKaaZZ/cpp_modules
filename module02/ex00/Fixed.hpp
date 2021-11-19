@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/19 11:47:04 by bcosters          #+#    #+#             */
+/*   Updated: 2021/11/19 12:01:08 by bcosters         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -15,7 +27,13 @@ class Fixed
 
 		Fixed &		operator=( Fixed const & rhs );
 
+		int			getRawBits() const;
+		void		setRawBits(int const raw);
+
 	private:
+
+		int					_fpVal;
+		static const int 	_numFracBits = 8;
 
 };
 
