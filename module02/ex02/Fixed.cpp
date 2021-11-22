@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 11:46:45 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/22 13:15:43 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:53:46 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ Fixed::Fixed() : _fpVal(0 * (1 << _numFracBits))
 Fixed::Fixed( const Fixed & src ) : _fpVal(src._fpVal)
 {
 	std::cout << "Copy constructor called." << std::endl;
+}
+
+Fixed::Fixed(int const integer) : _fpVal(integer << _numFracBits)
+{
+	std::cout << "Int constructor called." << std::endl;
+}
+
+Fixed::Fixed(float const fl) : _fpVal(roundf(fl * (1 << _numFracBits)))
+{
+	std::cout << "Float constructor called." << std::endl;
 }
 
 
@@ -53,8 +63,8 @@ Fixed &				Fixed::operator=( Fixed const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Fixed const & i )
 {
-	std::cout << "Output overload called." << std::endl;
-	o << i.getRawBits();
+	// std::cout << "Output overload called." << std::endl;
+	o << i.toFloat();
 	return o;
 }
 
@@ -71,6 +81,14 @@ int		Fixed::getRawBits() const {
 void	Fixed::setRawBits(int const raw) {
 	std::cout << "setRawBits called." << std::endl;
 	this->_fpVal = raw;
+}
+
+float	Fixed::toFloat(void) const {
+	return (float)_fpVal / (1 << _numFracBits);
+}
+
+int		Fixed::toInt(void) const {
+	return (int)(_fpVal / (1 << _numFracBits));
 }
 
 /*

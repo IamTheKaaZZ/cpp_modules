@@ -48,7 +48,7 @@ QUIT	= \033[0m
 
 # VARIABLES
 
-NAME	=	fixed00
+NAME	=	fixed01
 SRCS	=	$(wildcard *.cpp)
 DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
