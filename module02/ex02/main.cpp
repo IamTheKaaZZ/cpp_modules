@@ -6,26 +6,44 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/22 13:22:04 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:08:09 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <iomanip>
+
+void	print_result(Fixed const & fpn) {
+	std::cout << fpn << std::endl;
+}
 
 int	main() {
 	Fixed a;
-	Fixed const b(10);
-	Fixed const c(42.42f);
-	Fixed const d(b);
+	Fixed b(10);
+	Fixed c(42.42f);
+	Fixed d(4242.42f);
 
-	a = Fixed(1234.4321f);
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-	std::cout << "c is " << c << std::endl;
-	std::cout << "d is " << d << std::endl;
-	std::cout << "a(int) is " << a.toInt() << std::endl;
-	std::cout << "b(int) is " << b.toInt() << std::endl;
-	std::cout << "c(int) is " << c.toInt() << std::endl;
-	std::cout << "d(int) is " << d.toInt() << std::endl;
+	print_result(a);
+	std::cout << std::boolalpha << (a == Fixed(0)) << std::endl;
+	++a;
+	std::cout << std::boolalpha << (a == Fixed(0)) << std::endl;
+	print_result(a);
+	print_result(a++);
+	print_result(a);
+	a = b + c;
+	print_result(a);
+	std::cout << std::boolalpha << (a > b) << std::endl;
+	std::cout << std::boolalpha << (a < b) << std::endl;
+	std::cout << std::boolalpha << (a >= b) << std::endl;
+	std::cout << std::boolalpha << (a <= b) << std::endl;
+	std::cout << std::boolalpha << (a != b) << std::endl;
+	print_result(--a);
+	print_result(a--);
+	print_result(a);
+	print_result(d * 2);
+	print_result(d / 2);
+	print_result(d - a);
+	print_result(Fixed::min(a, d));
+	print_result(Fixed::max(a, d));
 	return 0;
 }

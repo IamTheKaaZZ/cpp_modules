@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 11:47:04 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/22 13:47:02 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:45:58 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,29 @@ class Fixed	//24:8 Fixed point representation
 		~Fixed();
 
 		Fixed &		operator=( Fixed const & rhs );
+		bool		operator>( Fixed const & rhs );
+		bool		operator<( Fixed const & rhs );
+		bool		operator>=( Fixed const & rhs );
+		bool		operator<=( Fixed const & rhs );
+		bool		operator==( Fixed const & rhs );
+		bool		operator!=( Fixed const & rhs );
+		Fixed		operator+( Fixed const & rhs );
+		Fixed		operator-( Fixed const & rhs );
+		Fixed		operator*( Fixed const & rhs );
+		Fixed		operator/( Fixed const & rhs );
+		Fixed&		operator++(void);	//prefix
+		Fixed		operator++(int);	//postfix
+		Fixed&		operator--(void);	//prefix
+		Fixed		operator--(int);	//postfix
 
 		int			getRawBits() const;
 		void		setRawBits(int const raw);
 		float		toFloat(void) const;
 		int			toInt(void) const;
+		static Fixed&			min(Fixed & a, Fixed & b);
+		static Fixed const &	min(Fixed const & a, Fixed const & b);
+		static Fixed&			max(Fixed & a, Fixed & b);
+		static Fixed const &	max(Fixed const & a, Fixed const & b);
 
 	private:
 
