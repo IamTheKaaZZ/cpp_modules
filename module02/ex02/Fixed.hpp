@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 11:47:04 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/22 15:45:58 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:47:28 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ class Fixed	//24:8 Fixed point representation
 		~Fixed();
 
 		Fixed &		operator=( Fixed const & rhs );
-		bool		operator>( Fixed const & rhs );
-		bool		operator<( Fixed const & rhs );
-		bool		operator>=( Fixed const & rhs );
-		bool		operator<=( Fixed const & rhs );
-		bool		operator==( Fixed const & rhs );
-		bool		operator!=( Fixed const & rhs );
-		Fixed		operator+( Fixed const & rhs );
-		Fixed		operator-( Fixed const & rhs );
-		Fixed		operator*( Fixed const & rhs );
-		Fixed		operator/( Fixed const & rhs );
+		bool		operator>( Fixed const & rhs ) const;
+		bool		operator<( Fixed const & rhs ) const;
+		bool		operator>=( Fixed const & rhs ) const;
+		bool		operator<=( Fixed const & rhs ) const;
+		bool		operator==( Fixed const & rhs ) const;
+		bool		operator!=( Fixed const & rhs ) const;
+		Fixed		operator+( Fixed const & rhs ) const;
+		Fixed		operator-( Fixed const & rhs ) const;
+		Fixed		operator*( Fixed const & rhs ) const;
+		Fixed		operator/( Fixed const & rhs ) const;
 		Fixed&		operator++(void);	//prefix
 		Fixed		operator++(int);	//postfix
 		Fixed&		operator--(void);	//prefix

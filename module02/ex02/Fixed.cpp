@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 11:46:45 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/22 16:10:32 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:49:51 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,49 +61,49 @@ Fixed &				Fixed::operator=( Fixed const & rhs )
 	return *this;
 }
 
-bool				Fixed::operator>( Fixed const & rhs ) {
+bool				Fixed::operator>( Fixed const & rhs ) const {
 	if (this->getRawBits() > rhs.getRawBits())
 		return true;
 	else
 		return false;
 }
 
-bool				Fixed::operator<( Fixed const & rhs ) {
+bool				Fixed::operator<( Fixed const & rhs ) const {
 	if (this->getRawBits() < rhs.getRawBits())
 		return true;
 	else
 		return false;
 }
 
-bool				Fixed::operator>=( Fixed const & rhs ) {
+bool				Fixed::operator>=( Fixed const & rhs ) const {
 	if (this->getRawBits() >= rhs.getRawBits())
 		return true;
 	else
 		return false;
 }
 
-bool				Fixed::operator<=( Fixed const & rhs ) {
+bool				Fixed::operator<=( Fixed const & rhs ) const {
 	if (this->getRawBits() <= rhs.getRawBits())
 		return true;
 	else
 		return false;
 }
 
-bool				Fixed::operator==( Fixed const & rhs ) {
+bool				Fixed::operator==( Fixed const & rhs ) const {
 	if (this->getRawBits() == rhs.getRawBits())
 		return true;
 	else
 		return false;
 }
 
-bool				Fixed::operator!=( Fixed const & rhs ) {
+bool				Fixed::operator!=( Fixed const & rhs ) const {
 	if (this->getRawBits() != rhs.getRawBits())
 		return true;
 	else
 		return false;
 }
 
-Fixed				Fixed::operator+( Fixed const & rhs ) {
+Fixed				Fixed::operator+( Fixed const & rhs ) const {
 	Fixed	result;
 	long	left = (long)this->getRawBits();
 	long	right = (long)rhs.getRawBits();
@@ -119,7 +119,7 @@ Fixed				Fixed::operator+( Fixed const & rhs ) {
 	return result;
 }
 
-Fixed				Fixed::operator-( Fixed const & rhs ) {
+Fixed				Fixed::operator-( Fixed const & rhs ) const {
 	Fixed	result;
 	long	left = (long)this->getRawBits();
 	long	right = (long)rhs.getRawBits();
@@ -135,29 +135,29 @@ Fixed				Fixed::operator-( Fixed const & rhs ) {
 	return result;
 }
 
-Fixed				Fixed::operator*( Fixed const & rhs ) {
-	Fixed	result;
-	long	left = (long)this->getRawBits();
-	long	right = (long)rhs.getRawBits();
-	if (left * right > INT32_MAX) {
+Fixed				Fixed::operator*( Fixed const & rhs ) const {
+	double	left = this->toFloat();
+	double	right = rhs.toFloat();
+	if ((long)(left * right) > INT32_MAX) {
 		std::cout << "Integer overflow during multiplication." << std::endl;
 		return Fixed(-1);
 	}
-	if (left * right < INT32_MIN) {
+	if ((long)(left * right) < INT32_MIN) {
 		std::cout << "Integer underflow during multiplication." << std::endl;
 		return Fixed(1);
 	}
-	result.setRawBits(this->getRawBits() * rhs.getRawBits());
+	Fixed result((float)(left * right));
 	return result;
 }
 
-Fixed				Fixed::operator/( Fixed const & rhs ) {
-	Fixed	result;
+Fixed				Fixed::operator/( Fixed const & rhs ) const {
+	double	left = this->toFloat();
+	double	right = rhs.toFloat();
 	if (rhs.getRawBits() == 0 || (this->getRawBits() == INT32_MIN && rhs.getRawBits() == -1)) {
 		std::cout << "Integer overflow during division." << std::endl;
 		return Fixed(-1);
 	}
-	result.setRawBits(this->getRawBits() / rhs.getRawBits());
+	Fixed	result((float)(left / right));
 	return result;
 }
 

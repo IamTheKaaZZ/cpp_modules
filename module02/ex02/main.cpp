@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/22 16:08:09 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:26:24 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main() {
 	Fixed b(10);
 	Fixed c(42.42f);
 	Fixed d(4242.42f);
+	Fixed e(5);
 
 	print_result(a);
 	std::cout << std::boolalpha << (a == Fixed(0)) << std::endl;
@@ -40,10 +41,14 @@ int	main() {
 	print_result(--a);
 	print_result(a--);
 	print_result(a);
+	print_result(d);
 	print_result(d * 2);
+	print_result(d * Fixed(2));
 	print_result(d / 2);
+	print_result(d / Fixed(2));
 	print_result(d - a);
 	print_result(Fixed::min(a, d));
 	print_result(Fixed::max(a, d));
+	print_result(e / 2.5f);
 	return 0;
 }
