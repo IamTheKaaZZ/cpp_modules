@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/23 17:52:47 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/24 12:36:45 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ void	print_result(Point const & p) {
 }
 
 int	main() {
-	Point p1(0, 5);
-	Point p2(1.5, 2.5);
-	Point p3(2.5, 2);
+	Point p1(0, 0);
+	Point p2(0, 5);
+	Point p3(5, 5);
+	for (int i = 1; i <= 5; i++) {
+		for (int j = 1; j <= i; j++) {
+			std::cout << '*';
+		}
+		std::cout << std::endl;
+	}
 	std::cout << "Triangle:" << std::endl;
 	print_result(p1);
 	print_result(p2);
@@ -29,9 +35,21 @@ int	main() {
 	Point pt1(-10, -10);
 	print_result(pt1);
 	std::cout << std::boolalpha << bsp(p1, p2, p3, pt1) << std::endl;
-	Point pt2(0.5, 1);
+	Point pt3(10, 10);
+	print_result(pt3);
+	std::cout << std::boolalpha << bsp(p1, p2, p3, pt3) << std::endl;
+	Point pt4(5, -5);
+	print_result(pt4);
+	std::cout << std::boolalpha << bsp(p1, p2, p3, pt4) << std::endl;
+	Point pt2(1, 2);
 	print_result(pt2);
 	std::cout << std::boolalpha << bsp(p1, p2, p3, pt2) << std::endl;
+	Point pt5(3, 4);
+	print_result(pt5);
+	std::cout << std::boolalpha << bsp(p1, p2, p3, pt5) << std::endl;
+	Point pt6(0, 4);
+	print_result(pt6);
+	std::cout << std::boolalpha << bsp(p1, p2, p3, pt6) << std::endl;
 	std::cout << "Vertice tests:" << std::endl;
 	std::cout << std::boolalpha << bsp(p1, p2, p3, p1) << std::endl;
 	std::cout << std::boolalpha << bsp(p1, p2, p3, p2) << std::endl;
