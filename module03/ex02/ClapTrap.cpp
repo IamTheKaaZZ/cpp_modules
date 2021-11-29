@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:18:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 14:44:20 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:19:55 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _maxHP(10), 
 	std::cout << "Named ClapTrap constructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap( const ClapTrap & src ) : _name(src._name), _hitpoints(10), _maxHP(10), _energyPoints(10), _maxEP(10), _attackDamage(0)
+ClapTrap::ClapTrap( const ClapTrap & src ) : _name(src._name), _hitpoints(src._hitpoints), _maxHP(src._maxHP), _energyPoints(src._energyPoints), _maxEP(src._maxEP), _attackDamage(src._attackDamage)
 {
 	std::cout << "Copy ClapTrap constructor called." << std::endl;
 }
@@ -68,25 +68,6 @@ std::ostream &			operator<<( std::ostream & o, ClapTrap const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
-void			ClapTrap::setName(std::string name) {
-	this->_name = name;
-}
-
-void			ClapTrap::setHP(unsigned int amount) {
-	this->_hitpoints = amount;
-	this->_maxHP = amount;
-}
-
-void			ClapTrap::setEP(unsigned int amount) {
-	this->_energyPoints = amount;
-	this->_maxEP = amount;
-}
-
-void			ClapTrap::setAD(unsigned int amount) {
-	this->_attackDamage = amount;
-}
-
 
 void			ClapTrap::attack(std::string const & target) {
 	if (this->_energyPoints == 0) {

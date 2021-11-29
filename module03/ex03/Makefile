@@ -48,13 +48,13 @@ QUIT	= \033[0m
 
 # VARIABLES
 
-NAME	=	bsp
+NAME	=	diamondtrap03
 SRCS	=	$(wildcard *.cpp)
 DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
 INCL	=	$(wildcard *.hpp)
 CC		=	clang++
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 DBFLAGS =	-g -fsanitize=address
 
 # RULES
