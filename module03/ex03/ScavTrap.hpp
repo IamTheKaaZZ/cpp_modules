@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 12:22:56 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 17:06:37 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/30 10:21:02 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ class ScavTrap : virtual public ClapTrap
 		~ScavTrap();
 
 		ScavTrap &		operator=( ScavTrap const & rhs );
-		void		guardGate(void);
+		void			setName(std::string name);
+		void			setHp(void);
+		void			setEp(void);
+		void			setAd(void);
+		void			guardGate(void);
 
 	protected:
 

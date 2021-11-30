@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:18:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 17:21:30 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/30 10:08:49 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ class ClapTrap
 		unsigned int	getHP(void) const;
 		unsigned int	getEP(void) const;
 		unsigned int	getAD(void) const;
+		void			setName(std::string name);
+		void			setHp(void);
+		void			setEp(void);
+		void			setAd(void);
 		void			attack(std::string const & target);
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);

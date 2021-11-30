@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:18:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 17:21:46 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/30 10:18:18 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-ClapTrap::ClapTrap() : _name("ClapTrap"), _hitpoints(10), _maxHP(10), _energyPoints(10), _maxEP(10), _attackDamage(0)
+ClapTrap::ClapTrap() : _name("ClapTrap")
 {
+	setHp();
+	setEp();
+	setAd();
 	std::cout << "Default ClapTrap constructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _maxHP(10), _energyPoints(10), _maxEP(10), _attackDamage(0)
+ClapTrap::ClapTrap(std::string name) : _name(name)
 {
+	setHp();
+	setEp();
+	setAd();
 	std::cout << "Named ClapTrap constructor called." << std::endl;
 }
 
@@ -68,6 +74,22 @@ std::ostream &			operator<<( std::ostream & o, ClapTrap const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
+void			ClapTrap::setName(std::string name) {
+	this->_name = name;
+}
+
+void			ClapTrap::setHp(void) {
+	this->_hitpoints = this->_maxHP = 10;
+}
+
+void			ClapTrap::setEp(void) {
+	this->_energyPoints = this->_maxEP = 10;
+}
+
+void			ClapTrap::setAd(void) {
+	this->_attackDamage = 0;
+}
 
 void			ClapTrap::attack(std::string const & target) {
 	if (this->_energyPoints == 0) {

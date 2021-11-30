@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:48:38 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 17:27:40 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/30 11:35:34 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap()
 {
 	this->_name = "DiamondTrap";
-	this->ClapTrap::_name = ClapTrap::getName() + _name;
-	this->ClapTrap::_hitpoints = this->FragTrap::_hitpoints;
-	this->ClapTrap::_energyPoints = this->ScavTrap::_energyPoints;
-	this->ClapTrap::_attackDamage = this->FragTrap::_attackDamage;
+	ClapTrap::setName(ClapTrap::_name + _name);
+	FragTrap::setHp();
+	ScavTrap::setEp();
+	FragTrap::setAd();
 	std::cout << "Default DiamondTrap constructor called." << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name)
+DiamondTrap::DiamondTrap(std::string name)
 {
 	this->_name = name;
-	// ClapTrap::setName(ClapTrap::getName() + _name);
-	// this->setHP(FragTrap::getHP());
-	// this->setEP(ScavTrap::getEP());
-	// this->setAD(FragTrap::getAD());
+	ClapTrap::setName(ClapTrap::_name + _name);
+	FragTrap::setHp();
+	ScavTrap::setEp();
+	FragTrap::setAd();
 	std::cout << "Named DiamondTrap constructor called." << std::endl;
 }
 
@@ -61,18 +61,20 @@ DiamondTrap &				DiamondTrap::operator=( DiamondTrap const & rhs )
 {
 	if ( this != &rhs )
 	{
-		// this->setName(rhs.getName());
-		// this->setHP(rhs.getHP());
-		// this->setEP(rhs.getEP());
-		// this->setAD(rhs.getAD());
-		// this->setGuard(rhs.getGuard());
+		this->_name = rhs._name;
+		this->_hitpoints = rhs._hitpoints;
+		this->_maxHP = rhs._hitpoints;
+		this->_energyPoints = rhs._energyPoints;
+		this->_maxEP = rhs._energyPoints;
+		this->_attackDamage = rhs._attackDamage;
+		this->_gateKeeperMode = rhs._gateKeeperMode;
 	}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, DiamondTrap const & i )
 {
-	o << "<" << i.getName() << "> has " << i.getHP() << " HP, " << i.getEP() << " EP and " << i.getAD() << " Attack Damage.";
+	o << "<" << i.DiamondTrap::getName() << "> has " << i.getHP() << " HP, " << i.getEP() << " EP and " << i.getAD() << " Attack Damage.";
 	return o;
 }
 
@@ -87,12 +89,15 @@ void			DiamondTrap::attack(std::string const & target) {
 
 void			DiamondTrap::whoAmI(void) const {
 	std::cout << "My name is " << _name << std::endl;
-	std::cout << "My clapTrap name is" << getName() << std::endl;
+	std::cout << "My clapTrap name is " << ClapTrap::getName() << std::endl;
 }
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
+std::string		DiamondTrap::getName(void) const {
+	return this->_name;
+}
 
 /* ************************************************************************** */

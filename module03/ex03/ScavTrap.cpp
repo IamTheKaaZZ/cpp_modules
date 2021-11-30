@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 12:22:56 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 17:12:47 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/11/30 11:36:58 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,18 @@
 
 ScavTrap::ScavTrap() : ClapTrap(), _gateKeeperMode(false)
 {
-	ClapTrap::_name = "ScavTrap";
-	ClapTrap::_hitpoints = 100;
-	ClapTrap::_maxHP = 100;
-	ClapTrap::_energyPoints = 50;
-	ClapTrap::_maxEP = 50;
-	ClapTrap::_attackDamage = 20;
+	setName(" ScavTrap");
+	setHp();
+	setEp();
+	setAd();
 	std::cout << "Default ScavTrap constructor called." << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _gateKeeperMode(false)
 {
-	ClapTrap::_hitpoints = 100;
-	ClapTrap::_maxHP = 100;
-	ClapTrap::_energyPoints = 50;
-	ClapTrap::_maxEP = 50;
-	ClapTrap::_attackDamage = 20;
+	setHp();
+	setEp();
+	setAd();
 	std::cout << "Named ScavTrap constructor called." << std::endl;
 }
 
@@ -62,12 +58,12 @@ ScavTrap &				ScavTrap::operator=( ScavTrap const & rhs )
 {
 	if ( this != &rhs )
 	{
-		this->ClapTrap::_name = rhs.ClapTrap::_name;
-		this->ClapTrap::_hitpoints = rhs.ClapTrap::_hitpoints;
-		this->ClapTrap::_maxHP = rhs.ClapTrap::_hitpoints;
-		this->ClapTrap::_energyPoints = rhs.ClapTrap::_energyPoints;
-		this->ClapTrap::_maxEP = rhs.ClapTrap::_energyPoints;
-		this->ClapTrap::_attackDamage = rhs.ClapTrap::_attackDamage;
+		this->_name = rhs._name;
+		this->_hitpoints = rhs._hitpoints;
+		this->_maxHP = rhs._hitpoints;
+		this->_energyPoints = rhs._energyPoints;
+		this->_maxEP = rhs._energyPoints;
+		this->_attackDamage = rhs._attackDamage;
 	}
 	return *this;
 }
@@ -82,6 +78,22 @@ std::ostream &			operator<<( std::ostream & o, ScavTrap const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
+void			ScavTrap::setName(std::string name) {
+	this->_name = name;
+}
+
+void			ScavTrap::setHp(void) {
+	this->_hitpoints = this->_maxHP = 100;
+}
+
+void			ScavTrap::setEp(void) {
+	this->_energyPoints = this->_maxEP = 50;
+}
+
+void			ScavTrap::setAd(void) {
+	this->_attackDamage = 20;
+}
 
 void			ScavTrap::guardGate(void) {
 	if (this->_gateKeeperMode) {
