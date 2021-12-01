@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:16:02 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 15:18:36 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/01 15:52:05 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,65 @@
 
 # include <iostream>
 # include <string>
+# include "Character.hpp"
 
 class AMateria
 {
 
+	protected:
+
+		std::string const		type;
+
 	public:
 
 		AMateria();
+		AMateria(std::string const & type);
 		AMateria( AMateria const & src );
-		~AMateria();
+		virtual ~AMateria();
 
 		AMateria &		operator=( AMateria const & rhs );
+		std::string const &		getType(void) const;
+		virtual AMateria*		clone(void) const = 0;
+		virtual void			use(ICharacter& target);
 
 	private:
 
 };
 
 std::ostream &			operator<<( std::ostream & o, AMateria const & i );
+
+class	Ice : public AMateria
+{
+	public:
+
+		Ice();
+		Ice( Ice const & src );
+		~Ice();
+
+		Ice &		operator=( Ice const & rhs );
+		std::string const &		getType(void) const;
+		virtual AMateria*		clone(void) const;
+		virtual void			use(ICharacter& target);
+
+	private:
+
+};
+
+class	Cure : public AMateria
+{
+	public:
+
+		Cure();
+		Cure( Cure const & src );
+		~Cure();
+
+		Cure &		operator=( Cure const & rhs );
+		std::string const &		getType(void) const;
+		virtual AMateria*		clone(void) const;
+		virtual void			use(ICharacter& target);
+
+	private:
+
+};
 
 #endif /* ******************************************************** AMATERIA_H */
