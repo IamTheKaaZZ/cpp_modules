@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:48:38 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 11:35:34 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/01 10:18:30 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 DiamondTrap::DiamondTrap()
 {
 	this->_name = "DiamondTrap";
-	ClapTrap::setName(ClapTrap::_name + _name);
+	ClapTrap::setName(_name + ClapTrap::_name);
 	FragTrap::setHp();
 	ScavTrap::setEp();
 	FragTrap::setAd();
@@ -29,7 +29,7 @@ DiamondTrap::DiamondTrap()
 DiamondTrap::DiamondTrap(std::string name)
 {
 	this->_name = name;
-	ClapTrap::setName(ClapTrap::_name + _name);
+	ClapTrap::setName(_name + ClapTrap::_name);
 	FragTrap::setHp();
 	ScavTrap::setEp();
 	FragTrap::setAd();
