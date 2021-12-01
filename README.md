@@ -1,5 +1,6 @@
 # CPP_Modules
-First steps into Object-Oriented Programming!
+First steps into Object-Oriented Programming!<br>
+**DISCLAIMER**<br>For the sake of getting a grasp on the basics of C++, we are only allowed to use the CPP-98 standard.
 
 ## Table of contents
 
