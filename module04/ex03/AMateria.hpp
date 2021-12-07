@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:16:02 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 15:32:30 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:26:28 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,23 @@ class	Cure : public AMateria
 		~Cure();
 
 		Cure &		operator=( Cure const & rhs );
+		std::string const &		getType(void) const;
+		virtual AMateria*		clone(void) const;
+		virtual void			use(ICharacter& target);
+
+	private:
+
+};
+
+class	Fire : public AMateria
+{
+	public:
+
+		Fire();
+		Fire( Fire const & src );
+		~Fire();
+
+		Fire &		operator=( Fire const & rhs );
 		std::string const &		getType(void) const;
 		virtual AMateria*		clone(void) const;
 		virtual void			use(ICharacter& target);

@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:16:02 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 15:55:15 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:26:58 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,72 @@ void					Cure::use(ICharacter& target) {
 */
 
 std::string const &		Cure::getType(void) const {
+	return this->type;
+}
+
+//CURE
+
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
+
+Fire::Fire() : AMateria("fire")
+{
+	std::cout << "Default Fire constructor called" << std::endl;
+}
+
+Fire::Fire( const Fire & src ) : AMateria(src)
+{
+	std::cout << "Copy Fire constructor called" << std::endl;
+}
+
+
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
+
+Fire::~Fire()
+{
+	std::cout << "Fire destructor called" << std::endl;
+}
+
+
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
+
+Fire &				Fire::operator=( Fire const & rhs )
+{
+	if ( this != &rhs )
+	{
+		*this = rhs;
+	}
+	return *this;
+}
+
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+AMateria*				Fire::clone(void) const {
+	return new Fire();
+}
+
+void					Fire::use(ICharacter& target) {
+	std::string	output = "* unleashes heavenly fire upon NAME *";
+	size_t		found = output.find("NAME");
+	if (found != std::string::npos) {
+		output.erase(found, std::string("NAME").length());
+		output.insert(found, target.getName());
+	}
+	std::cout << output << std::endl;
+}
+
+/*
+** --------------------------------- ACCESSOR ---------------------------------
+*/
+
+std::string const &		Fire::getType(void) const {
 	return this->type;
 }
 

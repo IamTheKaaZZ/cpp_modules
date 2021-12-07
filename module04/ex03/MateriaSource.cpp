@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:18:12 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 15:23:52 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:38:51 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,6 @@ MateriaSource::MateriaSource( const MateriaSource & src )
 MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource destructor called" << std::endl;
-	for (int i = 0; i < 4; i++) {
-		if (this->_materias[i])
-			delete this->_materias[i];
-	}
 }
 
 
@@ -56,9 +52,7 @@ MateriaSource &				MateriaSource::operator=( MateriaSource const & rhs )
 	if ( this != &rhs )
 	{
 		for (int i = 0; i < 4; i++) {
-			if (this->_materias[i])
-				delete this->_materias[i];
-			this->_materias[i] = rhs._materias[i]->clone();
+			this->_materias[i] = rhs._materias[i];
 		}
 	}
 	return *this;
