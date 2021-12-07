@@ -54,7 +54,7 @@ DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
 INCL	=	$(wildcard *.hpp)
 CC		=	clang++
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow -Wc++98-compat
 DBFLAGS =	-g -fsanitize=address
 
 # RULES
@@ -64,7 +64,7 @@ all:	$(NAME)
 $(NAME):	$(OBJS)
 	@$(ECHO) "$(GREEN) '$(NAME)' objects compiled.$(QUIT)"
 	@$(ECHO) "$(GREEN) Creating '$(NAME)'$(QUIT)"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) $(DBFLAGS) -o $(NAME) $(OBJS)
 	@$(ECHO) "$(GREEN) $(NAME) executable CREATED$(QUIT)"
 
 $(DIR_O)%.o:	%.cpp $(INCL)

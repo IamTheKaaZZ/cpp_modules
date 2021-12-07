@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 16:48:40 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 17:32:53 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ int	main() {
 	a.equip(source.createMateria("cure"));
 	a.equip(source.createMateria("fire"));
 	std::cout << a << std::endl;
+	Character bob = a;
+	bob.use(0, a);
+	std::cout << bob << std::endl;
 	return 0;
 }

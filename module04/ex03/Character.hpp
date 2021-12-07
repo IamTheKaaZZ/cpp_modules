@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:17:42 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 15:51:06 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 17:28:23 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class Character : public ICharacter
 
 	private:
 
-		std::string const			_name;
+		std::string					_name;
 		AMateria*					_inventory[4];
 
 };

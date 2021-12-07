@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:17:42 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 16:48:22 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 17:30:00 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ Character::Character(std::string const & name) : _name(name)
 	}
 }
 
-Character::Character( const Character & src ) : _name(src.getName())
+Character::Character( const Character & src ) : _name(src._name)
 {
 	std::cout << "Copy Character constructor called" << std::endl;
 	for (int i = 0; i < 4; i++) {
-		if (this->_inventory[i]) {
-			delete this->_inventory[i];
+		if (src._inventory[i])
 			this->_inventory[i] = src._inventory[i]->clone();
-		}
 	}
 }
 
@@ -64,22 +62,19 @@ Character::~Character()
 
 Character &				Character::operator=( Character const & rhs )
 {
-
-	Character temp(rhs._name);
 	if ( this != &rhs )
 	{
-		this->~Character();
 		for (int i = 0; i < 4; i++) {
+			if (this->_inventory[i])
+				delete this->_inventory[i];
 			if (rhs._inventory[i])
-				temp._inventory[i] = rhs._inventory[i]->clone();
+				this->_inventory[i] = rhs._inventory[i]->clone();
 			else
-				temp._inventory[i] = NULL;
+				this->_inventory[i] = NULL;
 		}
-		*this = temp;
-		return *this;
+		this->_name = rhs.getName();
 	}
-	else
-		return *this;
+	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Character const & i )
@@ -89,8 +84,8 @@ std::ostream &			operator<<( std::ostream & o, Character const & i )
 	o << "Has the following inventory:" << std::endl;
 	for (int j = 0; j < 4; j++) {
 		o << "Slot " << j << " ";
-		if (i.getInvItem(j))
-			o << ": " << i.getInvItem(j)->getType();
+		if (i.getInvItem(j) != NULL)
+			o << ": " << *i.getInvItem(j);
 		else
 			o << ": Empty.";
 		o << std::endl;
