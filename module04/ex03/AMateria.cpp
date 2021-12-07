@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:16:02 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 16:26:58 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:44:52 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ std::ostream &			operator<<( std::ostream & o, AMateria const & i )
 */
 
 void					AMateria::use(ICharacter& target) {
-	std::string	output = "* uses TYPE on NAME *";
+	std::string	output = "* THIS uses TYPE on NAME *";
 	size_t		found = output.find("NAME");
 	if (found != std::string::npos) {
 		output.erase(found, std::string("NAME").length());

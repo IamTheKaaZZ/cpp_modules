@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:17:42 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 16:05:04 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:48:22 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void					Character::use(int idx, ICharacter& target) {
 	if (idx < 0 || idx > 3)
 		return;
 	if (this->_inventory[idx]) {
+		std::cout << this->getName() << " ";
 		this->_inventory[idx]->use(target);
 		this->unequip(idx);
 	}
