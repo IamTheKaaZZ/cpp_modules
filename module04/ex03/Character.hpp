@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:17:42 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/01 17:02:32 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:51:06 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <string>
 # include "AMateria.hpp"
 
+class AMateria;
 class ICharacter
 {
 	public:
 		
-		virtual ~ICharacter();
+		virtual ~ICharacter() {};
 		virtual	std::string const &		getName() const = 0;
 		virtual	void					equip(AMateria* m) = 0;
 		virtual	void					unequip(int idx) = 0;
@@ -39,13 +40,14 @@ class Character : public ICharacter
 
 		Character &		operator=( Character const & rhs );
 		virtual	std::string const &		getName() const;
+		virtual	AMateria*				getInvItem(int idx) const;
 		virtual	void					equip(AMateria* m);
 		virtual	void					unequip(int idx);
 		virtual void					use(int idx, ICharacter& target);
 
 	private:
 
-		std::string const &			_name;
+		std::string const			_name;
 		AMateria*					_inventory[4];
 
 };

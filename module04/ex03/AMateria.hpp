@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:16:02 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/01 15:52:05 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:32:30 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 # include "Character.hpp"
 
+class ICharacter;
 class AMateria
 {
 

@@ -6,44 +6,29 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 15:07:44 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:03:32 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Character.hpp"
+#include "AMateria.hpp"
+#include "MateriaSource.hpp"
 #include <iomanip>
 
-void	print_result(Animal const & p) {
-	std::cout << p << std::endl;
-}
-
 int	main() {
-	// Animal*	a = new Animal();
-	// Animal*	b = new Animal("Chimera");
-	Animal*	c = new Dog();
-	Animal*	d = new Cat();
-	print_result(*c);
-	c->makeSound();
-	print_result(*d);
-	d->makeSound();
-	std::cout << "Cat->printIdeas();" << std::endl;
-	d->printIdeas();
-	
-	Animal*	animals[20];
-	for (int i = 0; i < 20; i++) {
-		std::cout << "Animal " << i << std::endl;
-		if (i < 10) {
-			animals[i] = new Dog();
-		}
-		else {
-			animals[i] = new Cat();
-		}
-	}
-
-	delete c;
-	delete d;
-	for (int i = 0; i < 20; i++) {
-		delete animals[i];
-	}
+	Character a("Dee's Nuts");
+	Character k("Gottem");
+	std::cout << a << std::endl;
+	AMateria*	b = new Cure();
+	AMateria*	c = new Ice();
+	AMateria*	d = c;
+	a.equip(b);
+	a.equip(c);
+	a.equip(d);
+	std::cout << a << std::endl;
+	a.use(3, k);
+	a.use(2, k);
+	a.unequip(0);
+	std::cout << a << std::endl;
 	return 0;
 }

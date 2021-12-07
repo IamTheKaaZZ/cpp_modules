@@ -48,7 +48,7 @@ QUIT	= \033[0m
 
 # VARIABLES
 
-NAME	=	animal02
+NAME	=	materia03
 SRCS	=	$(wildcard *.cpp)
 DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
@@ -76,12 +76,12 @@ $(OBJS):	| $(DIR_O)
 $(DIR_O):
 	@mkdir -p $(DIR_O)
 
-test:	all
-	@$(ECHO) '$(WHITE)./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l$(QUIT)'
-	@./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l
-	@$(ECHO) '$(WHITE)./$(NAME) | grep "Brain constructor" | wc -l ; ./$(NAME) | grep "Brain destructor" | wc -l$(QUIT)'
-	@./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l
-	@./$(NAME) | grep "Idea"
+# test:	all
+# 	@$(ECHO) '$(WHITE)./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l$(QUIT)'
+# 	@./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l
+# 	@$(ECHO) '$(WHITE)./$(NAME) | grep "Brain constructor" | wc -l ; ./$(NAME) | grep "Brain destructor" | wc -l$(QUIT)'
+# 	@./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l
+# 	@./$(NAME) | grep "Idea"
 
 clean:
 	@$(ECHO) "$(RED)Deleting .o files$(QUIT)"

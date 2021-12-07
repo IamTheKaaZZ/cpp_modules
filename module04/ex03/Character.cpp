@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:17:42 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/01 17:05:58 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:05:04 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ Character::Character( const Character & src ) : _name(src.getName())
 {
 	std::cout << "Copy Character constructor called" << std::endl;
 	for (int i = 0; i < 4; i++) {
-		this->_inventory[i] = src._inventory[i];
+		if (this->_inventory[i]) {
+			delete this->_inventory[i];
+			this->_inventory[i] = src._inventory[i]->clone();
+		}
 	}
 }
 
@@ -67,16 +70,31 @@ Character &				Character::operator=( Character const & rhs )
 	{
 		this->~Character();
 		for (int i = 0; i < 4; i++) {
-			temp._inventory[i] = rhs._inventory[i];
+			if (rhs._inventory[i])
+				temp._inventory[i] = rhs._inventory[i]->clone();
+			else
+				temp._inventory[i] = NULL;
 		}
+		*this = temp;
+		return *this;
 	}
-	return temp;
+	else
+		return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Character const & i )
 {
 	o << "Character ";
 	o << i.getName() << std::endl;
+	o << "Has the following inventory:" << std::endl;
+	for (int j = 0; j < 4; j++) {
+		o << "Slot " << j << " ";
+		if (i.getInvItem(j))
+			o << ": " << i.getInvItem(j)->getType();
+		else
+			o << ": Empty.";
+		o << std::endl;
+	}
 	return o;
 }
 
@@ -104,8 +122,10 @@ void					Character::unequip(int idx) {
 void					Character::use(int idx, ICharacter& target) {
 	if (idx < 0 || idx > 3)
 		return;
-	if (this->_inventory[idx])
+	if (this->_inventory[idx]) {
 		this->_inventory[idx]->use(target);
+		this->unequip(idx);
+	}
 }
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
@@ -113,6 +133,10 @@ void					Character::use(int idx, ICharacter& target) {
 
 std::string const &		Character::getName() const {
 	return this->_name;
+}
+
+AMateria*				Character::getInvItem(int idx) const {
+	return this->_inventory[idx];
 }
 
 /* ************************************************************************** */
