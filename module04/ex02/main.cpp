@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 15:07:44 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:54:38 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ int	main() {
 	for (int i = 0; i < 20; i++) {
 		delete animals[i];
 	}
+	Dog basic;
+	Dog tmp = basic;
 	return 0;
 }
