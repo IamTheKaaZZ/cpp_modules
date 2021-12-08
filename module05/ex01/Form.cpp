@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:53:56 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 12:54:11 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:41:12 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,27 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Form::Form()
+Form::Form() : _name(""), _isSigned(false), _gradeRequired(150)
 {
+	std::cout << "Default Form constructor called" << std::endl;
 }
 
-Form::Form( const Form & src )
+Form::Form(std::string const & name, int const & required) : _name(name),
+	_isSigned(false),
+	_gradeRequired(required)
 {
+	std::cout << "Parameter Form constructor called" << std::endl;
+	if (_gradeRequired < 1)
+		throw Form::GradeTooHighException();
+	else if (_gradeRequired > 150)
+		throw Form::GradeTooLowException();
+}
+
+Form::Form( const Form & src ) : _name(src._name),
+	_isSigned(src._isSigned),
+	_gradeRequired(src._gradeRequired)
+{
+	std::cout << "Copy Form constructor called" << std::endl;
 }
 
 
@@ -31,6 +46,7 @@ Form::Form( const Form & src )
 
 Form::~Form()
 {
+	std::cout << "Form destructor called" << std::endl;
 }
 
 
@@ -40,16 +56,21 @@ Form::~Form()
 
 Form &				Form::operator=( Form const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		*this = rhs;
+	}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << "Form = " << i.getName() << ", needs a grade of " << i.getGradeRequired() << " to be signed.";
+	o << " The form is ";
+	if (i.isFormSigned())
+		o << "signed";
+	else
+		o << "not signed";
 	return o;
 }
 
@@ -58,6 +79,16 @@ std::ostream &			operator<<( std::ostream & o, Form const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+bool					Form::beSigned(Bureaucrat const & b) {
+	if (b.getGrade() <= this->_gradeRequired) {
+		this->_isSigned = true;
+		return true;
+	}
+	else {
+		throw Form::GradeTooLowException();
+		return false;
+	}
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

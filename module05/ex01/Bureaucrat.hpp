@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:17:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 11:47:24 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:33:06 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # include <iostream>
 # include <string>
 # include <stdexcept>
+# include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
 
@@ -45,6 +47,7 @@ class Bureaucrat
 		};
 		std::string const &		getName() const;
 		int const &				getGrade() const;
+		void					signForm(Form & f);
 
 	private:
 

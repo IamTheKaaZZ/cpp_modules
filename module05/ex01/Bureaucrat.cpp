@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:17:57 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 11:57:19 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:41:23 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,16 @@ std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void				Bureaucrat::signForm(Form & f) {
+	try {
+		f.beSigned(*this);
+		std::cout << this->_name << " signed " << f.getName() << " successfully." << std::endl;
+	}
+	catch (Form::GradeTooLowException & e) {
+		std::cout << this->_name << " was not able to sign " << f.getName() << std::endl;
+		std::cout << "Reason: " << e.what() << std::endl;
+	}
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
