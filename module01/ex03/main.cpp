@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 12:31:43 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:25:25 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include "HumanB.hpp"
 
 int	main(void) {
-	HumanA	rando = HumanA();
-	rando.attack();
-
 	Weapon	kitchen = Weapon("ladle");
 	HumanA	bobby = HumanA("bobby", kitchen);
 	bobby.attack();

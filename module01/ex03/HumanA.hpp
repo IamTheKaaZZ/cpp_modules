@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:36:22 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 12:31:29 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:24:42 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class HumanA {
 
 public:
 
-	HumanA(void);
+	// HumanA(void);
 	HumanA(string name, Weapon& w);
 	~HumanA(void);
 	void	attack(void) const;

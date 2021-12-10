@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:40:02 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 12:30:23 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:24:52 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 using std::cout;
 using std::endl;
 
-Weapon def = Weapon("Nothing");
 
-HumanA::HumanA(void) : _name("Nobody"), _w(def) {
-	return;
-}
+// HumanA::HumanA(void) : _name("Nobody") {
+// 	Weapon def = Weapon("Nothing");
+// 	this->_w = def;
+// 	return;
+// }
 
 HumanA::HumanA(string name, Weapon& w) : _name(name), _w(w) {
 	return;
