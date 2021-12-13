@@ -6,17 +6,19 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:30:30 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 16:54:13 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 11:49:00 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Karen.hpp"
 
-Karen::Karen(void) {	//Assign a member function to each string
-	_fmap[string("DEBUG")] = &Karen::debug;
-	_fmap[string("INFO")] = &Karen::info;
-	_fmap[string("WARNING")] = &Karen::warning;
-	_fmap[string("ERROR")] = &Karen::error;
+Karen::Karen(void)
+{
+	_func_lookup_table[0] = s_lookup("DEBUG", &Karen::debug);
+	_func_lookup_table[1] = s_lookup("INFO", &Karen::info);
+	_func_lookup_table[2] = s_lookup("WARNING", &Karen::warning);
+	_func_lookup_table[3] = s_lookup("ERROR", &Karen::error);
+	_func_lookup_table[4] = s_lookup("", NULL);
 }
 
 Karen::~Karen(void) {
@@ -24,14 +26,10 @@ Karen::~Karen(void) {
 }
 
 void	Karen::complain(std::string level) const {
-	Karen::StrToF::const_iterator	it = getMap().find(level);	//Iterate over the keys to find level
-	if (it == getMap().end())									//if key is not found, stop
-		return;
-	(this->*(it->second))();									//If key is found, run the second data aka the mapped function to it
-}
-
-const Karen::StrToF&	Karen::getMap(void) const{
-	return this->_fmap;
+	int i = -1;
+	while (_func_lookup_table[++i].fp != NULL) {
+		if (level == _func_lookup_table[i].key) ((this->*_func_lookup_table[i].fp)());
+	}
 }
 
 void	Karen::debug(void) const {

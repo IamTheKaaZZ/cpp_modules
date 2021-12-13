@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 14:25:49 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 09:58:22 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,15 @@ int	main(int argc, char **argv) {
 	string		replacement = argv[3];
 	size_t		found;
 	for (string line; getline(ifs, line);) {			//For each line in the file
-		while (line.find(needle) != string::npos) {		//While you can find the needle string
-			found = line.find(needle);					//find the starting position of the needle
+		found = line.find(needle);						//find the starting position of the needle
+		while (found != string::npos) {					//While you can find the needle string
 			if (found != string::npos) {				//IF the needle is found
 				line.erase(found, needle.length());		//erase the needle from found with its entire length
 				line.insert(found, replacement);		//insert the replacement at position found
+				found = line.find(needle, found + replacement.size());					//find the starting position of the next needle
 			}
+			else
+				break;
 		}
 		ofs << line << endl;							//Add the line to the outputfile
 	}

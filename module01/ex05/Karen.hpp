@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   karen.hpp                                          :+:      :+:    :+:   */
+/*   Karen.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:32:14 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 16:51:40 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 11:49:04 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,26 @@ using std::string;
 class Karen {
 
 	public:
-		//Map a string to a `void Karen::function(void) const`
-		typedef std::map<string,void(Karen::*)()const> StrToF;
+		struct s_lookup {
+			string key;
+			void(Karen::*fp)()const;
+			s_lookup() {};
+			s_lookup(string const & key, void(Karen::*fp)()const) {
+				this->key = key;
+				this->fp = fp;
+			};
+		};
 		Karen(void);
 		~Karen(void);
 		void			complain(std::string level) const;
-		const StrToF&	getMap(void) const;
 
 	private:
 
-		StrToF	_fmap;
-		void	debug(void) const;
-		void	info(void) const;
-		void	warning(void) const;
-		void	error(void) const;
+		s_lookup	_func_lookup_table[5];
+		void		debug(void) const;
+		void		info(void) const;
+		void		warning(void) const;
+		void		error(void) const;
 };
 
 #endif
