@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 14:46:18 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/13 16:36:36 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:28:55 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void					PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 		throw Bureaucrat::GradeTooLowException();
 	}
 	else if (this->isFormSigned()) {
-		std::cout << this->getName() << " has been pardoned by Zafod Beeblebrox." << std::endl;
+		std::cout << this->getTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
 	}
 	else {
 		std::cout << "Form has NOT been signed and cannot be executed" << std::endl;

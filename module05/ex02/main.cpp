@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:57:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/13 16:35:52 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:28:29 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,39 @@ void	test1() {
 	delete xmas;
 }
 
-// void	test2() {
-// 	std::cout << "TEST2" << std::endl;
-// 	Form norm("new norm", -42);
-// }
+void	test2() {
+	std::cout << "TEST2" << std::endl;
+	Bureaucrat bob("Bobby", 1);
+	Bureaucrat jess("Jessy", 150);
+	Form* robo = new RobotomyRequestForm("Your mom");
+	std::cout << bob << std::endl;
+	std::cout << jess << std::endl;
+	std::cout << *robo << std::endl;
+	jess.signForm(*robo);
+	std::cout << *robo << std::endl;
+	bob.signForm(*robo);
+	std::cout << *robo << std::endl;
+	robo->execute(bob);
+	robo->execute(jess);
+	delete robo;
+}
 
-// void	test3() {
-// 	std::cout << "TEST3" << std::endl;
-// 	Form lazy("Lazy Louie", 999);
-// }
+void	test3() {
+	std::cout << "TEST3" << std::endl;
+	Bureaucrat bob("Bobby", 1);
+	Bureaucrat jess("Jessy", 150);
+	Form* pres = new PresidentialPardonForm("Your mom");
+	std::cout << bob << std::endl;
+	std::cout << jess << std::endl;
+	std::cout << *pres << std::endl;
+	jess.signForm(*pres);
+	std::cout << *pres << std::endl;
+	bob.signForm(*pres);
+	std::cout << *pres << std::endl;
+	pres->execute(bob);
+	pres->execute(jess);
+	delete pres;
+}
 
 int	main() {
 	try {
@@ -53,14 +77,23 @@ int	main() {
 	catch (Bureaucrat::GradeTooLowException & e) {
 		std::cout << e.what() << std::endl;
 	}
-	// try {
-	// 	test3();
-	// }
-	// catch (Form::GradeTooHighException & e) {
-	// 	std::cout << e.what() << std::endl;
-	// }
-	// catch (Form::GradeTooLowException & e) {
-	// 	std::cout << e.what() << std::endl;
-	// }
+	try {
+		test2();
+	}
+	catch (Form::GradeTooLowException & e) {
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException & e) {
+		std::cout << e.what() << std::endl;
+	}
+	try {
+		test3();
+	}
+	catch (Form::GradeTooLowException & e) {
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException & e) {
+		std::cout << e.what() << std::endl;
+	}
 	return 0;
 }

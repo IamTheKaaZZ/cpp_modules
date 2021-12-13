@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 14:45:34 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/13 16:36:29 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:26:37 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void					RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 		bool coinflip = (rand() % 2) != 0;
 		std::cout << "BzzzzzzzRRRRZzzzzzzrrzzzzzzRRZRZrzrzzrzrzrrrzBBrrr" << std::endl;
 		if (coinflip)
-			std::cout << this->getName() << " has been successfully robotimized." << std::endl;
+			std::cout << this->getTarget() << " has been successfully robotimized." << std::endl;
 		else
-			std::cout << this->getName() << " has NOT been successfully robotimized." << std::endl;
+			std::cout << this->getTarget() << " has NOT been successfully robotimized." << std::endl;
 	}
 	else {
 		std::cout << "Form has NOT been signed and cannot be executed" << std::endl;
