@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:32:14 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/17 17:26:50 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:15:46 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,36 @@
 
 using std::string;
 
-enum level_code {
-	eDebug,
-	eInfo,
-	eWarning,
-	eError,
-	eWTF
-};
-
 class Karen {
 
 	public:
-		//Map a string to a `void Karen::function(void) const`
-		typedef std::map<string,void(Karen::*)()const> StrToF;
+
+		enum level_code {
+			eDebug,
+			eInfo,
+			eWarning,
+			eError,
+			eWTF
+		};
+		struct s_lookup {
+			string 				key;
+			void				(Karen::*fp)()const;
+			Karen::level_code	lvl;
+			s_lookup() {};
+			s_lookup(string const & key, void(Karen::*fp)()const, Karen::level_code lvl) {
+				this->key = key;
+				this->fp = fp;
+				this->lvl = lvl;
+			};
+		};
 		Karen(void);
 		~Karen(void);
-		void			complain(std::string level) const;
-		void			filter(std::string level) const;
-		const StrToF&	getMap(void) const;
+		void	complain(std::string level) const;
+		void	filter(std::string level) const;
 
 	private:
 
-		StrToF	_fmap;
+		s_lookup	_func_lookup_table[5];
 		void		debug(void) const;
 		void		info(void) const;
 		void		warning(void) const;
