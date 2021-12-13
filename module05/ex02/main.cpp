@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:57:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 16:05:14 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:35:52 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ void	test1() {
 	Form* xmas = new ShrubberyCreationForm("Christmas tree");
 	std::cout << bob << std::endl;
 	std::cout << jess << std::endl;
-	std::cout << xmas << std::endl;
+	std::cout << *xmas << std::endl;
+	jess.signForm(*xmas);
+	std::cout << *xmas << std::endl;
+	bob.signForm(*xmas);
+	std::cout << *xmas << std::endl;
+	xmas->execute(bob);
+	xmas->execute(jess);
+	delete xmas;
 }
 
 // void	test2() {
@@ -37,16 +44,15 @@ void	test1() {
 // }
 
 int	main() {
-	test1();
-	// try {
-	// 	test2();
-	// }
-	// catch (Form::GradeTooHighException & e) {
-	// 	std::cout << e.what() << std::endl;
-	// }
-	// catch (Form::GradeTooLowException & e) {
-	// 	std::cout << e.what() << std::endl;
-	// }
+	try {
+		test1();
+	}
+	catch (Form::GradeTooLowException & e) {
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException & e) {
+		std::cout << e.what() << std::endl;
+	}
 	// try {
 	// 	test3();
 	// }

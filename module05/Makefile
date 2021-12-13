@@ -48,7 +48,7 @@ QUIT	= \033[0m
 
 # VARIABLES
 
-NAME	=	formMadness02
+NAME	=	materia03
 SRCS	=	$(wildcard *.cpp)
 DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
@@ -86,7 +86,7 @@ $(DIR_O):
 clean:
 	@$(ECHO) "$(RED)Deleting .o files$(QUIT)"
 	@rm -fr $(DIR_O)
-	@rm -fr *_shrubbery
+	@rm -fr *.replace
 
 fclean:	clean
 	@$(ECHO) "$(RED)Deleting '$(NAME)' executable"

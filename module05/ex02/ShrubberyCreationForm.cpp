@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 14:44:53 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 15:59:41 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:36:19 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("nothing", 145), _target("nothing")
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("nothing", 145), _target("nothing"), _execGrade(137)
 {
 	std::cout << "Default ShrubberyCreationForm constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const & target) :
 	Form("ShrubberyCreation", 145),
-	_target(target)
+	_target(target),
+	_execGrade(137)
 {
 	std::cout << "Parameter ShrubberyCreationForm constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src ) :
 	Form(src),
-	_target(src._target)
+	_target(src._target),
+	_execGrade(137)
 {
 	std::cout << "Copy ShrubberyCreationForm constructor called" << std::endl;
 }
@@ -76,41 +78,52 @@ std::ostream &			ShrubberyCreationForm::outputformat(std::ostream & o) const {
 
 void					ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	if (executor.getGrade() > this->_execGrade) {
-		Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	}
-	else {
+	else if (this->isFormSigned()) {
 		std::ofstream ofs(this->_target + "_shrubbery");
+		char const BLANK = ' ';
+		char const LEAF = '#';
+		char const BAUBLE = '@';
+		char const WOOD = '|';
 		srand((unsigned)time(NULL) * getpid());
 		size_t	treeHeight = (rand() % 64) + 1;
 		size_t	spaces = treeHeight - 2;
-		for (int i = 0; i < (treeHeight - 2); i++) {
-        for (int j = spaces; j > 0; j--)
-        {
-            ofs << BLANK;
-        }
-        for (int foliage = 0; foliage <= i * 2; foliage++)
-        {
-            ofs << LEAF;
-        }
-        spaces--;
-        ofs << std::endl;
+		for (size_t i = 0; i < (treeHeight - 2); i++) {
+        	for (size_t j = spaces; j > 0; j--) {
+            	ofs << BLANK;
+        	}
+        	for (size_t foliage = 0; foliage <= i * 2; foliage++) {
+				bool decor = (rand() % 4) != 0;
+				if (!decor)
+					ofs << BAUBLE;
+				else
+            		ofs << LEAF;
+        	}
+        	spaces--;
+        	ofs << std::endl;
+		}
 		size_t trunkLine = 1;
-		while (trunkLine <= 2)  // for each line in the trunk
+		while (trunkLine <= treeHeight / 4)  // for each line in the trunk
 		{
 			spaces = 1;
 
-			while (spaces <= (treeHeight - 2))   //draw the spaces on the left
+			while (spaces <= (treeHeight - 4))   //draw the spaces on the left
 			{
 				ofs << BLANK;
 				spaces += 1;
 			}
-
+			ofs << WOOD;       //draw the trunk
+			ofs << WOOD;       //draw the trunk
 			ofs << WOOD;       //draw the trunk
 			ofs << std::endl;  //go to next line
 			trunkLine += 1;
 		}
 		ofs.close();
     }
+	else {
+		std::cout << "Form has NOT been signed and cannot be executed" << std::endl;
+	}
 }
 
 /*

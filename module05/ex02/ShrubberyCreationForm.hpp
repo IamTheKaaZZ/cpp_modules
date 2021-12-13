@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 14:44:53 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 16:06:53 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:26:14 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ class Form;
 class ShrubberyCreationForm : public Form
 {
 
-		char const BLANK = ' ';
-		char const LEAF = '#';
-		char const WOOD = '|';
-
 	public:
 
 		ShrubberyCreationForm(std::string const & target);
@@ -36,7 +32,7 @@ class ShrubberyCreationForm : public Form
 		~ShrubberyCreationForm();
 
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
-		virtual void				execute(Bureaucrat const & executor) const;
+		void						execute(Bureaucrat const & executor) const;
 		std::string const &			getTarget() const { return _target; }
 		virtual std::ostream &		outputformat(std::ostream & o) const;
 
@@ -44,7 +40,7 @@ class ShrubberyCreationForm : public Form
 
 		ShrubberyCreationForm();
 		std::string const		_target;
-		int const				_execGrade = 137;
+		int const				_execGrade;
 
 };
 

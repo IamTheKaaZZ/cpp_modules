@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 14:45:34 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 15:35:11 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:10:43 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <cstdlib>
 # include "Form.hpp"
 
 class RobotomyRequestForm : public Form
@@ -27,7 +28,7 @@ class RobotomyRequestForm : public Form
 		~RobotomyRequestForm();
 
 		RobotomyRequestForm &		operator=( RobotomyRequestForm const & rhs );
-		virtual void				execute(Bureaucrat const & executor) const;
+		void						execute(Bureaucrat const & executor) const;
 		std::string const &			getTarget() const { return _target; }
 		virtual std::ostream &		outputformat(std::ostream & o) const;
 
@@ -35,6 +36,7 @@ class RobotomyRequestForm : public Form
 
 		RobotomyRequestForm();
 		std::string const		_target;
+		int const				_execGrade;
 
 };
 

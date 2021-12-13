@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:53:56 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/08 15:20:58 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 15:29:29 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ std::ostream &			Form::outputformat(std::ostream & o) const {
 		o << "signed";
 	else
 		o << "not signed";
+	o << std::endl;
 	return o;
 }
 
