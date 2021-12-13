@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/13 09:58:22 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:18:23 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ int	main(int argc, char **argv) {
 				line.insert(found, replacement);		//insert the replacement at position found
 				found = line.find(needle, found + replacement.size());					//find the starting position of the next needle
 			}
-			else
-				break;
 		}
 		ofs << line << endl;							//Add the line to the outputfile
 	}
