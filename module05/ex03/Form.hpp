@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:53:56 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/13 15:28:25 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:06:40 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ class Form
 		int const &				getGradeRequired() const { return _gradeRequired; }
 		bool					beSigned(Bureaucrat const & b);
 		virtual void			execute(Bureaucrat const & executor) const = 0;
-		virtual std::ostream &		outputformat(std::ostream & o) const;
+		virtual std::ostream &	outputformat(std::ostream & o) const;
 
 	private:
 		std::string const	_name;

@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 11:57:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/13 17:28:29 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:30:16 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 void	test1() {
 	std::cout << "TEST1" << std::endl;
+	Intern	rando;
 	Bureaucrat bob("Bobby", 1);
 	Bureaucrat jess("Jessy", 150);
-	Form* xmas = new ShrubberyCreationForm("Christmas tree");
+	Form* xmas = rando.makeForm("shrubbery creation", "Christmas tree");
 	std::cout << bob << std::endl;
 	std::cout << jess << std::endl;
 	std::cout << *xmas << std::endl;
@@ -35,9 +37,10 @@ void	test1() {
 
 void	test2() {
 	std::cout << "TEST2" << std::endl;
+	Intern	rando;
 	Bureaucrat bob("Bobby", 1);
 	Bureaucrat jess("Jessy", 150);
-	Form* robo = new RobotomyRequestForm("Your mom");
+	Form* robo = rando.makeForm("robotomy request", "Your mom");
 	std::cout << bob << std::endl;
 	std::cout << jess << std::endl;
 	std::cout << *robo << std::endl;
@@ -52,9 +55,10 @@ void	test2() {
 
 void	test3() {
 	std::cout << "TEST3" << std::endl;
+	Intern	rando;
 	Bureaucrat bob("Bobby", 1);
 	Bureaucrat jess("Jessy", 150);
-	Form* pres = new PresidentialPardonForm("Your mom");
+	Form* pres = rando.makeForm("presidential pardon", "Your mom");
 	std::cout << bob << std::endl;
 	std::cout << jess << std::endl;
 	std::cout << *pres << std::endl;
@@ -65,6 +69,13 @@ void	test3() {
 	pres->execute(bob);
 	pres->execute(jess);
 	delete pres;
+}
+
+void	test4() {
+	std::cout << "TEST4" << std::endl;
+	Intern	rando;
+	Form* pres = rando.makeForm("pay raise", "me");
+	(void)pres;
 }
 
 int	main() {
@@ -95,5 +106,6 @@ int	main() {
 	catch (Bureaucrat::GradeTooLowException & e) {
 		std::cout << e.what() << std::endl;
 	}
+	test4();
 	return 0;
 }
