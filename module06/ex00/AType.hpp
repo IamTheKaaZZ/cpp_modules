@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:36 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 13:48:32 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/16 16:57:03 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 # define ATYPE_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <string>
+# include <sstream>
 # include <stdexcept>
 # include <cctype>
 # include <cmath>
+# include "Char.hpp"
+# include "Integer.hpp"
+# include "Float.hpp"
+# include "Double.hpp"
 
 typedef std::numeric_limits<char> cl;
 typedef std::numeric_limits<int> il;
@@ -37,6 +43,16 @@ class AType
 		class InvalidInputException : std::exception {
 			char const * what() const throw() {
 				return ("The input string is invalid.");
+			}
+		};
+		class NonDisplayException : std::exception {
+			char const * what() const throw() {
+				return ("Non displayable");
+			}
+		};
+		class ImpossibleConvException : std::exception {
+			char const * what() const throw() {
+				return ("impossible");
 			}
 		};
 		AType &			operator=( AType const & rhs );
