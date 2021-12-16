@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:55 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 13:26:01 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:53:04 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Char::Char()
+Char::Char() : AType()
 {
+}
+
+Char::Char(std::string const & input) : AType(input)
+{
+	if (this->getStr().length() != 1 || !std::isprint(this->getStr()[0]))
 }
 
 Char::Char( const Char & src )

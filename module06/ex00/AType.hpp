@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:36 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 13:25:28 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/16 13:48:32 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include <iostream>
 # include <string>
+# include <stdexcept>
+# include <cctype>
+# include <cmath>
+
+typedef std::numeric_limits<char> cl;
+typedef std::numeric_limits<int> il;
+typedef std::numeric_limits<float> fl;
+typedef std::numeric_limits<double> dl;
 
 class AType
 {
@@ -22,9 +30,15 @@ class AType
 	public:
 
 		AType();
+		AType(std::string const & input);
 		AType( AType const & src );
 		virtual ~AType();
 
+		class InvalidInputException : std::exception {
+			char const * what() const throw() {
+				return ("The input string is invalid.");
+			}
+		};
 		AType &			operator=( AType const & rhs );
 		std::string		getStr(void) const { return this->_toConvert; };
 		void			setStr(std::string const & str) { this->_toConvert = str; };
