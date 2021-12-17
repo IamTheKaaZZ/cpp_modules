@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:36 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 16:57:03 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:14:26 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include <stdexcept>
 # include <cctype>
 # include <cmath>
-# include "Char.hpp"
-# include "Integer.hpp"
-# include "Float.hpp"
-# include "Double.hpp"
+// # include "Char.hpp"
+// # include "Integer.hpp"
+// # include "Float.hpp"
+// # include "Double.hpp"
 
 typedef std::numeric_limits<char> cl;
 typedef std::numeric_limits<int> il;
@@ -41,27 +41,30 @@ class AType
 		virtual ~AType();
 
 		class InvalidInputException : std::exception {
-			char const * what() const throw() {
-				return ("The input string is invalid.");
-			}
+			public:
+				virtual char const * what() const throw() {
+					return ("The input string is invalid.");
+				}
 		};
-		class NonDisplayException : std::exception {
-			char const * what() const throw() {
-				return ("Non displayable");
-			}
-		};
-		class ImpossibleConvException : std::exception {
-			char const * what() const throw() {
-				return ("impossible");
-			}
-		};
+		// class NonDisplayException : std::exception {
+		// 	public:
+		// 		virtual char const * what() const throw() {
+		// 			return ("Non displayable");
+		// 		}
+		// };
+		// class ImpossibleConvException : std::exception {
+		// 	public:
+		// 		virtual char const * what() const throw() {
+		// 			return ("impossible");
+		// 		}
+		// };
 		AType &			operator=( AType const & rhs );
 		std::string		getStr(void) const { return this->_toConvert; };
 		void			setStr(std::string const & str) { this->_toConvert = str; };
-		virtual char	toChar(void) const = 0;
-		virtual int		toInt(void) const = 0;
-		virtual float	toFloat(void) const = 0;
-		virtual double	toDouble(void) const = 0;
+		// virtual Char const &		toChar(void) const = 0;
+		// virtual Integer const &		toInt(void) const = 0;
+		// virtual Float const &		toFloat(void) const = 0;
+		// virtual Double const &	toDouble(void) const = 0;
 
 	private:
 

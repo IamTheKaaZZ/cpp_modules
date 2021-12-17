@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:18:15 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 17:10:25 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:56:15 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Integer::Integer() : AType()
+Integer::Integer() : AType(), _converted(0), _possible(false)
 {
 }
 
-Integer::Integer(std::string const & input) : AType(input)
+Integer::Integer(std::string const & input) : AType(input), _possible(true)
 {
 	std::stringstream ss;
 	ss << input;
 	ss >> this->_converted;
 }
 
-Integer::Integer(Char const & c)
+Integer::Integer(Char const & c) : _possible(true)
 {
 	this->_converted = static_cast<int>(c.getConverted());
 }
@@ -36,7 +36,9 @@ Integer::Integer(Float const & f)
 {
 	if (f.getConverted() == fl::quiet_NaN()
 		|| f.getConverted() == fl::infinity() || f.getConverted() == -fl::infinity())
-		throw ImpossibleConvException();
+		_possible = false;
+	else
+		_possible = true;
 	this->_converted = static_cast<int>(f.getConverted());
 }
 
@@ -44,11 +46,15 @@ Integer::Integer(Double const & d)
 {
 	if (d.getConverted() == dl::quiet_NaN()
 		|| d.getConverted() == dl::infinity() || d.getConverted() == -dl::infinity())
-		throw ImpossibleConvException();
+		_possible = false;
+	else
+		_possible = true;
 	this->_converted = static_cast<char>(d.getConverted());
 }
 
-Integer::Integer( const Integer & src ) : AType(src), _converted(src._converted)
+Integer::Integer( const Integer & src ) : AType(src),
+	_converted(src._converted),
+	_possible(src._possible)
 {
 }
 
@@ -71,13 +77,21 @@ Integer &				Integer::operator=( Integer const & rhs )
 	if ( this != &rhs )
 	{
 		this->_converted = rhs.getConverted();
+		this->_possible = rhs._possible;
 	}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Integer const & i )
 {
-	o << "int: " << i.getConverted();
+	o << i.toChar();
+	if (!i.isPossible())
+		o << "int: impossible";
+	else
+		o << "int: " << i.getConverted();
+	o << std::endl;
+	o << i.toFloat();
+	o << i.toDouble();
 	return o;
 }
 
@@ -86,24 +100,20 @@ std::ostream &			operator<<( std::ostream & o, Integer const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-char					Integer::toChar() const {
-	char ret = static_cast<char>(this->_converted);
-	if (!std::isprint(ret))
-		throw NonDisplayException();
-	else
-		return ret;
+Char const &					Integer::toChar() const {
+	return Char(*this);
 }
 
-int						Integer::toInt() const {
-	return this->_converted;
+Integer const &				Integer::toInt() const {
+	return *this;
 }
 
-float					Integer::toFloat() const {
-	return static_cast<float>(this->_converted);
+Float const &					Integer::toFloat() const {
+	return Float(*this);
 }
 
-double					Integer::toDouble() const {
-	return static_cast<double>(this->_converted);
+Double const &					Integer::toDouble() const {
+	return Double(*this);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:18:16 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 17:00:02 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:11:32 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <string>
 # include "AType.hpp"
 
+class Char;
+class Float;
+class Double;
 class Integer : public AType
 {
 
@@ -31,15 +34,17 @@ class Integer : public AType
 
 		Integer &		operator=( Integer const & rhs );
 		int				getConverted(void) const { return this->_converted; };
-		char			toChar(void) const;
-		int				toInt(void) const;
-		float			toFloat(void) const;
-		double			toDouble(void) const;
+		bool			isPossible(void) const { return this->_possible; };
+		Char const &		toChar(void) const;
+		Integer	const &		toInt(void) const;
+		Float const &		toFloat(void) const;
+		Double const &		toDouble(void) const;
 
 	private:
 
 		Integer();
 		int		_converted;
+		bool	_possible;
 
 };
 

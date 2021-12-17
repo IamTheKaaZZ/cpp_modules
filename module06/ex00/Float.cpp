@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:18:29 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 17:17:21 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:57:30 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Float::Float() : AType()
+Float::Float() : AType(), _converted(0), _precision(1)
 {
 }
 
@@ -51,21 +51,26 @@ Float::Float(Char const & c)
 Float::Float(Integer const & i)
 {
 	this->_converted = static_cast<float>(i.getConverted());
-	if (!std::isprint(this->_converted))
-		throw NonDisplayException();
 }
 
 Float::Float(Double const & d)
 {
-	if (d.getConverted() == dl::quiet_NaN()
-		|| d.getConverted() == dl::infinity() || d.getConverted() == -dl::infinity())
-		throw ImpossibleConvException();
-	this->_converted = static_cast<Float>(d.getConverted());
-	if (!std::isprint(this->_converted))
-		throw NonDisplayException();
+	if (d.getConverted() == dl::quiet_NaN()) {
+		this->_converted = fl::quiet_NaN();
+	}
+	else if (d.getConverted() == dl::infinity()) {
+		this->_converted = fl::infinity();
+	}
+	else if (d.getConverted() == -dl::infinity()) {
+		this->_converted = -fl::infinity();
+	}
+	else
+		this->_converted = static_cast<float>(d.getConverted());
 }
 
-Float::Float( const Float & src ) : AType(src), _converted(src._converted)
+Float::Float( const Float & src ) : AType(src),
+	_converted(src._converted),
+	_precision(src._precision)
 {
 }
 
@@ -95,6 +100,8 @@ Float &				Float::operator=( Float const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Float const & i )
 {
+	o << i.toChar();
+	o << i.toInt();
 	if (i.getConverted() == fl::infinity())
 		o << "float: +inff";
 	else if (i.getConverted() == -fl::infinity())
@@ -103,6 +110,8 @@ std::ostream &			operator<<( std::ostream & o, Float const & i )
 		o << "float: nanf";
 	else
 		o << "float: " << std::setprecision(i.getPrecision()) << i.getConverted() << 'f';
+	o << std::endl;
+	o << i.toDouble();
 	return o;
 }
 
@@ -111,20 +120,20 @@ std::ostream &			operator<<( std::ostream & o, Float const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-char					Float::toChar() const {
-	return static_cast<char>(this->_converted);
+Char const &						Float::toChar() const {
+	return Char(*this);
 }
 
-int						Float::toInt() const {
-	return static_cast<int>(this->_converted);
+Integer const &					Float::toInt() const {
+	return Integer(*this);
 }
 
-float					Float::toFloat() const {
-	return this->_converted;
+Float const &					Float::toFloat() const {
+	return *this;
 }
 
-double					Float::toDouble() const {
-	return static_cast<double>(this->_converted);
+Double const &					Float::toDouble() const {
+	return Double(*this);
 }
 
 

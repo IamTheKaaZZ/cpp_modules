@@ -6,31 +6,42 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:53:13 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 13:38:12 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:08:40 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <string>
-#include <cctype>
-#include <cmath>
-
-
+#include "AType.hpp"
 
 int	main(int argc, char **argv) {
 	if (argc != 2)
 		std::cerr << "Wrong number of arguments (max 1)." << std::endl;
-	double				buffer = 0.0;
-	std::istringstream input(argv[1]);
-	char				c = static_cast<char>(buffer);
-	int					i = static_cast<int>(buffer);
-	float				f = static_cast<float>(buffer);
-	std::cout << "char: '" << c << '\'' << std::endl;
-	std::cout << "int: " << i << std::endl;
-	std::cout.setf(std::ios_base::fmtflags(), std::ios_base::floatfield);
-	std::cout << "float: " << f << "f" << std::endl;
-	std::cout << "double: " << buffer << std::endl;
+	std::string input(argv[1]);
+	AType*	type = NULL;
+	size_t	found;
+	try {
+		if (input.length() == 1 && !std::isdigit(input[0]))
+			type = new Char(input);
+		else if ((found = input.find(".") != std::string::npos)) {
+			if ((found = input.find("f") != std::string::npos)) { //float
+				type = new Float(input);
+			}
+			else { //double
+				type = new Double(input);
+			}
+		}
+		else { //int
+			type = new Integer(input);
+		}
+	}
+	catch (AType::InvalidInputException & e) {
+		std::cout << e.what() << std::endl;
+		if (type)
+			delete type;
+		return 1;
+	}
+	if (type) {
+		std::cout << *type;
+		delete type;
+	}
+	return 0;
 }
