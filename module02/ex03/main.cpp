@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/24 12:36:45 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:47:06 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,19 @@ int	main() {
 	std::cout << std::boolalpha << bsp(p1, p2, p3, p1) << std::endl;
 	std::cout << std::boolalpha << bsp(p1, p2, p3, p2) << std::endl;
 	std::cout << std::boolalpha << bsp(p1, p2, p3, p3) << std::endl;
+	std::cout << "Negative triangle" << std::endl;
+	Point p4(0, 0);
+	Point p5(0, -5);
+	Point p6(-5, -5);
+	std::cout << "Triangle:" << std::endl;
+	print_result(p4);
+	print_result(p5);
+	print_result(p6);
+	Point pt7(5, -5);
+	print_result(pt7);
+	std::cout << std::boolalpha << bsp(p1, p2, p3, pt7) << std::endl;
+	Point pt8(-1, -2);
+	print_result(pt8);
+	std::cout << std::boolalpha << bsp(p1, p2, p3, pt8) << std::endl;
 	return 0;
 }
