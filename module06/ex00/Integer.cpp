@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:18:15 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/17 16:56:15 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:42:34 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ Integer::Integer(std::string const & input) : AType(input), _possible(true)
 	ss >> this->_converted;
 }
 
-Integer::Integer(Char const & c) : _possible(true)
+Integer::Integer(Char const & c) : AType(c), _possible(true)
 {
+	std::cout << "Int from Char constructor" << std::endl;
 	this->_converted = static_cast<int>(c.getConverted());
 }
 
-Integer::Integer(Float const & f)
+Integer::Integer(Float const & f) : AType(f)
 {
-	if (f.getConverted() == fl::quiet_NaN()
+	std::cout << "Int from Float constructor" << std::endl;
+	if (f.getConverted() != f.getConverted()
 		|| f.getConverted() == fl::infinity() || f.getConverted() == -fl::infinity())
 		_possible = false;
 	else
@@ -42,9 +44,10 @@ Integer::Integer(Float const & f)
 	this->_converted = static_cast<int>(f.getConverted());
 }
 
-Integer::Integer(Double const & d)
+Integer::Integer(Double const & d) : AType(d)
 {
-	if (d.getConverted() == dl::quiet_NaN()
+	std::cout << "Int from Double constructor" << std::endl;
+	if (d.getConverted() != d.getConverted()
 		|| d.getConverted() == dl::infinity() || d.getConverted() == -dl::infinity())
 		_possible = false;
 	else
@@ -56,6 +59,7 @@ Integer::Integer( const Integer & src ) : AType(src),
 	_converted(src._converted),
 	_possible(src._possible)
 {
+	std::cout << "Int copy constructor" << std::endl;
 }
 
 
@@ -84,14 +88,11 @@ Integer &				Integer::operator=( Integer const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Integer const & i )
 {
-	o << i.toChar();
 	if (!i.isPossible())
 		o << "int: impossible";
 	else
 		o << "int: " << i.getConverted();
 	o << std::endl;
-	o << i.toFloat();
-	o << i.toDouble();
 	return o;
 }
 
@@ -100,22 +101,34 @@ std::ostream &			operator<<( std::ostream & o, Integer const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-Char const &					Integer::toChar() const {
-	return Char(*this);
+AType*					Integer::toChar() const {
+	return new Char(*this);
 }
 
-Integer const &				Integer::toInt() const {
-	return *this;
+AType*				Integer::toInt() const {
+	return new Integer(*this);
 }
 
-Float const &					Integer::toFloat() const {
-	return Float(*this);
+AType*					Integer::toFloat() const {
+	return new Float(*this);
 }
 
-Double const &					Integer::toDouble() const {
-	return Double(*this);
+AType*					Integer::toDouble() const {
+	return new Double(*this);
 }
 
+void				Integer::convertPrint() const {
+	AType*	C = this->toChar();
+	AType*	F = this->toFloat();
+	AType*	D = this->toDouble();
+	std::cout << *static_cast<Char*>(C);
+	std::cout << *this;
+	std::cout << *static_cast<Float*>(F);
+	std::cout << *static_cast<Double*>(D);
+	delete C;
+	delete F;
+	delete D;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

@@ -6,11 +6,15 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:53:13 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/17 17:08:40 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:44:56 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AType.hpp"
+#include "Char.hpp"
+#include "Integer.hpp"
+#include "Float.hpp"
+#include "Double.hpp"
 
 int	main(int argc, char **argv) {
 	if (argc != 2)
@@ -29,18 +33,27 @@ int	main(int argc, char **argv) {
 				type = new Double(input);
 			}
 		}
+		else if (input == "-inff" || input == "+inff" || input == "nanf") {
+			type = new Float(input);
+		}
+		else if (input == "-inf" || input == "+inf" || input == "nan") {
+			type = new Double(input);
+		}
 		else { //int
 			type = new Integer(input);
 		}
 	}
 	catch (AType::InvalidInputException & e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		if (type)
 			delete type;
 		return 1;
 	}
+	catch (std::exception & e) {
+		std::cerr << e.what() << std::endl;
+	}
 	if (type) {
-		std::cout << *type;
+		type->convertPrint();
 		delete type;
 	}
 	return 0;

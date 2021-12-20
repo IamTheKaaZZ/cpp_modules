@@ -76,12 +76,11 @@ $(OBJS):	| $(DIR_O)
 $(DIR_O):
 	@mkdir -p $(DIR_O)
 
-# test:	all
-# 	@$(ECHO) '$(WHITE)./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l$(QUIT)'
-# 	@./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l
-# 	@$(ECHO) '$(WHITE)./$(NAME) | grep "Brain constructor" | wc -l ; ./$(NAME) | grep "Brain destructor" | wc -l$(QUIT)'
-# 	@./$(NAME) | grep "Animal constructor" | wc -l ; ./$(NAME) | grep "Animal destructor" | wc -l
-# 	@./$(NAME) | grep "Idea"
+debug:
+	@$(ECHO) "$(GREEN) Creating debug '$(NAME)'$(QUIT)"
+	@$(CC) $(CFLAGS) $(DBFLAGS) $(SRCS) -o $(NAME)
+	@$(ECHO) "$(GREEN) $(NAME) executable CREATED$(QUIT)"
+
 
 clean:
 	@$(ECHO) "$(RED)Deleting .o files$(QUIT)"

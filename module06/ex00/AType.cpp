@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:36 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/16 16:17:49 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:49:02 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@ AType::AType() : _toConvert(NULL)
 
 AType::AType(std::string const & input) : _toConvert(input)
 {
+	std::cout << "AType constructor" << std::endl;
 	size_t	found = input.find(".");
 	if (_toConvert.length() == 1 && !std::isdigit(_toConvert[0])) { //Char case
 		if (!std::isprint(_toConvert[0]))
 			throw InvalidInputException();
 	}
 	else if (found == std::string::npos) { //Int case
+		if (input == "-inf" || input == "+inf" || input == "nan" ||
+			input == "-inff" || input == "+inff" || input == "nanf") {
+				return;
+		}
 		std::string::size_type	i = 0;
 		if (input.length() > 11)
 			throw InvalidInputException();
@@ -39,14 +44,14 @@ AType::AType(std::string const & input) : _toConvert(input)
 			i++;
 		}
 	}
-	else if (found != std::string::npos) { //float/double
+	else if (found != std::string::npos && input[found + 1]) { //float/double
 		if (*input.end() == 'f') { //Float
 			if (input.length() < 4 || input.length() > 16)
 				throw InvalidInputException();
 			for (std::string::const_iterator it = input.begin(); it != input.end(); it++) {
-				if (it == input.end()
-					|| input == "-inff" || input == "+inff" || input == "nanf")
+				if (it == input.end())
 					break;
+				if (it == input.begin() && *input.begin() == '-') it++;
 				if (!std::isdigit(*it) && *it != '.')
 					throw InvalidInputException();
 			}
@@ -55,8 +60,7 @@ AType::AType(std::string const & input) : _toConvert(input)
 			if (input.length() < 3 || input.length() > 24)
 				throw InvalidInputException();
 			for (std::string::const_iterator it = input.begin(); it != input.end(); it++) {
-				if (input == "-inf" || input == "+inf" || input == "nan")
-					break;
+				if (it == input.begin() && *input.begin() == '-') it++;
 				if (!std::isdigit(*it) && *it != '.')
 					throw InvalidInputException();
 			}
@@ -68,6 +72,7 @@ AType::AType(std::string const & input) : _toConvert(input)
 
 AType::AType( const AType & src ) : _toConvert(src._toConvert)
 {
+	std::cout << "AType copy constructor" << std::endl;
 }
 
 

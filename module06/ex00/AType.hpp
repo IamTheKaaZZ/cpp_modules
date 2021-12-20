@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:36 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/17 17:14:26 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 12:53:57 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ class AType
 		AType &			operator=( AType const & rhs );
 		std::string		getStr(void) const { return this->_toConvert; };
 		void			setStr(std::string const & str) { this->_toConvert = str; };
-		// virtual Char const &		toChar(void) const = 0;
-		// virtual Integer const &		toInt(void) const = 0;
-		// virtual Float const &		toFloat(void) const = 0;
-		// virtual Double const &	toDouble(void) const = 0;
+		virtual AType*		toChar(void) const = 0;
+		virtual AType*		toInt(void) const = 0;
+		virtual AType*		toFloat(void) const = 0;
+		virtual AType*		toDouble(void) const = 0;
+		virtual void		convertPrint(void) const = 0;
 
 	private:
 

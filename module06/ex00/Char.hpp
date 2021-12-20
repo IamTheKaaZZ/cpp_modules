@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:55 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/17 17:11:14 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 12:56:41 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <iostream>
 # include <string>
 # include "AType.hpp"
+// # include "Char.hpp"
+# include "Integer.hpp"
+# include "Float.hpp"
+# include "Double.hpp"
 
 class Integer;
 class Float;
@@ -36,10 +40,11 @@ class Char : public AType
 		char		getConverted(void) const { return this->_converted; };
 		bool		isPossible(void) const { return this->_possible; };
 		bool		isDisplay(void) const { return this->_display; };
-		Char const &	toChar(void) const;
-		Integer	const &	toInt(void) const;
-		Float const &	toFloat(void) const;
-		Double const &	toDouble(void) const;
+		virtual AType*		toChar(void) const;
+		virtual AType*		toInt(void) const;
+		virtual AType*		toFloat(void) const;
+		virtual AType*		toDouble(void) const;
+		virtual void		convertPrint(void) const;
 
 	private:
 

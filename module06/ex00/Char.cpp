@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:17:55 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/17 16:54:03 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:41:35 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ Char::Char(std::string const & input) :
 	_converted(this->getStr()[0]),
 	_possible(true)
 {
+	std::cout << "Char constructor" << std::endl;
 	if (!std::isprint(this->_converted))
 		_display = false;
 	else
 		_display = true;
 }
 
-Char::Char(Integer const & i) : _possible(true)
+Char::Char(Integer const & i) : AType(i), _possible(true)
 {
+	std::cout << "Char from Int constructor" << std::endl;
 	this->_converted = static_cast<char>(i.getConverted());
 	if (!std::isprint(this->_converted))
 		_display = false;
@@ -40,9 +42,10 @@ Char::Char(Integer const & i) : _possible(true)
 		_display = true;
 }
 
-Char::Char(Float const & f)
+Char::Char(Float const & f) : AType(f)
 {
-	if (f.getConverted() == fl::quiet_NaN()
+	std::cout << "Char from Float constructor" << std::endl;
+	if (f.getConverted() != f.getConverted()
 		|| f.getConverted() == fl::infinity() || f.getConverted() == -fl::infinity())
 		_possible = false;
 	else
@@ -54,9 +57,10 @@ Char::Char(Float const & f)
 		_display = true;
 }
 
-Char::Char(Double const & d)
+Char::Char(Double const & d) : AType(d)
 {
-	if (d.getConverted() == dl::quiet_NaN()
+	std::cout << "Char from Double constructor" << std::endl;
+	if (d.getConverted() != d.getConverted()
 		|| d.getConverted() == dl::infinity() || d.getConverted() == -dl::infinity())
 		_possible = false;
 	else
@@ -74,6 +78,7 @@ Char::Char( const Char & src ) :
 	_possible(src._possible),
 	_display(src._display)
 {
+	std::cout << "Char copy constructor" << std::endl;
 }
 
 
@@ -110,9 +115,6 @@ std::ostream &			operator<<( std::ostream & o, Char const & i )
 	else
 		o << "char: '" << i.getConverted() << '\'';
 	o << std::endl;
-	o << i.toInt();
-	o << i.toFloat();
-	o << i.toDouble();
 	return o;
 }
 
@@ -121,19 +123,33 @@ std::ostream &			operator<<( std::ostream & o, Char const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-Char const &					Char::toChar() const {
-	return *this;
-}
-Integer	const &				Char::toInt() const {
-	return Integer(*this);
+AType*					Char::toChar() const {
+	return new Char(*this);
 }
 
-Float const &					Char::toFloat() const {
-	return Float(*this);
+AType*				Char::toInt() const {
+	return new Integer(*this);
 }
 
-Double const &				Char::toDouble() const {
-	return Double(*this);
+AType*					Char::toFloat() const {
+	return new Float(*this);
+}
+
+AType*				Char::toDouble() const {
+	return new Double(*this);
+}
+
+void				Char::convertPrint() const {
+	AType*	I = this->toInt();
+	AType*	F = this->toFloat();
+	AType*	D = this->toDouble();
+	std::cout << *this;
+	std::cout << *static_cast<Integer*>(I);
+	std::cout << *static_cast<Float*>(F);
+	std::cout << *static_cast<Double*>(D);
+	delete I;
+	delete F;
+	delete D;
 }
 
 /*

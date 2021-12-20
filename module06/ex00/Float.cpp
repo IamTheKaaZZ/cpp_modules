@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 13:18:29 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/17 16:57:30 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:44:03 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ Float::Float() : AType(), _converted(0), _precision(1)
 
 Float::Float(std::string const & input) : AType(input)
 {
+	std::cout << "Float constructor" << std::endl;
 	_precision = 0;
 	if (this->getStr().find("inf") != std::string::npos) {
 		if (this->getStr()[0] == '+')
@@ -43,18 +44,21 @@ Float::Float(std::string const & input) : AType(input)
 	}
 }
 
-Float::Float(Char const & c)
+Float::Float(Char const & c) : AType(c), _precision(1)
 {
+	std::cout << "Float from Char constructor" << std::endl;
 	this->_converted = static_cast<float>(c.getConverted());
 }
 
-Float::Float(Integer const & i)
+Float::Float(Integer const & i) : AType(i), _precision(1)
 {
+	std::cout << "Float from Int constructor" << std::endl;
 	this->_converted = static_cast<float>(i.getConverted());
 }
 
-Float::Float(Double const & d)
+Float::Float(Double const & d) : AType(d), _precision(d.getPrecision())
 {
+	std::cout << "Float from Double constructor" << std::endl;
 	if (d.getConverted() == dl::quiet_NaN()) {
 		this->_converted = fl::quiet_NaN();
 	}
@@ -72,6 +76,7 @@ Float::Float( const Float & src ) : AType(src),
 	_converted(src._converted),
 	_precision(src._precision)
 {
+	std::cout << "Float copy constructor" << std::endl;
 }
 
 
@@ -100,8 +105,6 @@ Float &				Float::operator=( Float const & rhs )
 
 std::ostream &			operator<<( std::ostream & o, Float const & i )
 {
-	o << i.toChar();
-	o << i.toInt();
 	if (i.getConverted() == fl::infinity())
 		o << "float: +inff";
 	else if (i.getConverted() == -fl::infinity())
@@ -109,9 +112,8 @@ std::ostream &			operator<<( std::ostream & o, Float const & i )
 	else if (i.getConverted() == fl::quiet_NaN())
 		o << "float: nanf";
 	else
-		o << "float: " << std::setprecision(i.getPrecision()) << i.getConverted() << 'f';
+		o << "float: " << std::fixed << std::setprecision(i.getPrecision()) << i.getConverted() << 'f';
 	o << std::endl;
-	o << i.toDouble();
 	return o;
 }
 
@@ -120,22 +122,34 @@ std::ostream &			operator<<( std::ostream & o, Float const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-Char const &						Float::toChar() const {
-	return Char(*this);
+AType*						Float::toChar() const {
+	return new Char(*this);
 }
 
-Integer const &					Float::toInt() const {
-	return Integer(*this);
+AType*					Float::toInt() const {
+	return new Integer(*this);
 }
 
-Float const &					Float::toFloat() const {
-	return *this;
+AType*					Float::toFloat() const {
+	return new Float(*this);
 }
 
-Double const &					Float::toDouble() const {
-	return Double(*this);
+AType*					Float::toDouble() const {
+	return new Double(*this);
 }
 
+void				Float::convertPrint() const {
+	AType*	C = this->toChar();
+	AType*	I = this->toInt();
+	AType*	D = this->toDouble();
+	std::cout << *static_cast<Char*>(C);
+	std::cout << *static_cast<Integer*>(I);
+	std::cout << *this;
+	std::cout << *static_cast<Double*>(D);
+	delete C;
+	delete I;
+	delete D;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
