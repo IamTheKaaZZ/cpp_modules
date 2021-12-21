@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:26:30 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 10:17:34 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:50:05 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,7 @@ FragTrap &				FragTrap::operator=( FragTrap const & rhs )
 {
 	if ( this != &rhs )
 	{
-		this->ClapTrap::_name = rhs.ClapTrap::_name;
-		this->ClapTrap::_hitpoints = rhs.ClapTrap::_hitpoints;
-		this->ClapTrap::_maxHP = rhs.ClapTrap::_hitpoints;
-		this->ClapTrap::_energyPoints = rhs.ClapTrap::_energyPoints;
-		this->ClapTrap::_maxEP = rhs.ClapTrap::_energyPoints;
-		this->ClapTrap::_attackDamage = rhs.ClapTrap::_attackDamage;
+		ClapTrap::operator=(rhs);
 	}
 	return *this;
 }

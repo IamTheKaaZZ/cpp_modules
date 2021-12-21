@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:18:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 14:44:20 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:35:05 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ ClapTrap &				ClapTrap::operator=( ClapTrap const & rhs )
 	{
 		this->_name = rhs._name;
 		this->_hitpoints = rhs._hitpoints;
+		this->_maxHP = rhs._maxHP;
 		this->_energyPoints = rhs._energyPoints;
+		this->_maxEP = rhs._maxEP;
 		this->_attackDamage = rhs._attackDamage;
 	}
 	return *this;
@@ -68,25 +70,6 @@ std::ostream &			operator<<( std::ostream & o, ClapTrap const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
-void			ClapTrap::setName(std::string name) {
-	this->_name = name;
-}
-
-void			ClapTrap::setHP(unsigned int amount) {
-	this->_hitpoints = amount;
-	this->_maxHP = amount;
-}
-
-void			ClapTrap::setEP(unsigned int amount) {
-	this->_energyPoints = amount;
-	this->_maxEP = amount;
-}
-
-void			ClapTrap::setAD(unsigned int amount) {
-	this->_attackDamage = amount;
-}
-
 
 void			ClapTrap::attack(std::string const & target) {
 	if (this->_energyPoints == 0) {

@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:18:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 12:16:59 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:34:27 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ class ClapTrap
 
 		std::string		_name;
 		unsigned int	_hitpoints;
-		unsigned int const _maxHP;
+		unsigned int	_maxHP;
 		unsigned int	_energyPoints;
-		unsigned int const _maxEP;
+		unsigned int	_maxEP;
 		unsigned int	_attackDamage;
 
 };

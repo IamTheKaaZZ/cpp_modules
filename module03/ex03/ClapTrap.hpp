@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:18:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 10:08:49 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 11:53:33 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class ClapTrap
 		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap( ClapTrap const & src );
-		~ClapTrap();
+		virtual ~ClapTrap();
 
 		ClapTrap &		operator=( ClapTrap const & rhs );
 		std::string		getName(void) const;

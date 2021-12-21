@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 10:18:58 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 17:13:15 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:35:50 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ ClapTrap &				ClapTrap::operator=( ClapTrap const & rhs )
 	{
 		this->_name = rhs._name;
 		this->_hitpoints = rhs._hitpoints;
+		this->_maxHP = rhs._maxHP;
 		this->_energyPoints = rhs._energyPoints;
+		this->_maxEP = rhs._maxEP;
 		this->_attackDamage = rhs._attackDamage;
 	}
 	return *this;

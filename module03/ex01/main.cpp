@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/29 14:22:50 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:43:55 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	main() {
 	print_result(d1);
 	a1.guardGate();
 	c1.guardGate();
+	d1 = c1;
+	d1.guardGate();
 	a1.guardGate();
 	return 0;
 }

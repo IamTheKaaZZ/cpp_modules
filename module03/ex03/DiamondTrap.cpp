@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:48:38 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/01 10:18:30 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 11:50:24 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,8 @@ DiamondTrap &				DiamondTrap::operator=( DiamondTrap const & rhs )
 {
 	if ( this != &rhs )
 	{
+		ScavTrap::operator=(rhs);
 		this->_name = rhs._name;
-		this->_hitpoints = rhs._hitpoints;
-		this->_maxHP = rhs._hitpoints;
-		this->_energyPoints = rhs._energyPoints;
-		this->_maxEP = rhs._energyPoints;
-		this->_attackDamage = rhs._attackDamage;
-		this->_gateKeeperMode = rhs._gateKeeperMode;
 	}
 	return *this;
 }

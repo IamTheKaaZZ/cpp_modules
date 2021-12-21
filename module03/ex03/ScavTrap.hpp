@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 12:22:56 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 10:21:02 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 11:35:40 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class ScavTrap : virtual public ClapTrap
 		ScavTrap();
 		ScavTrap(std::string name);
 		ScavTrap( ScavTrap const & src );
-		~ScavTrap();
+		virtual ~ScavTrap();
 
 		ScavTrap &		operator=( ScavTrap const & rhs );
 		void			setName(std::string name);

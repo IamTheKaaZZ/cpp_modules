@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 14:26:30 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 10:13:34 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 11:35:23 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class FragTrap : virtual public ClapTrap
 		FragTrap();
 		FragTrap(std::string name);
 		FragTrap( FragTrap const & src );
-		~FragTrap();
+		virtual ~FragTrap();
 
 		FragTrap &		operator=( FragTrap const & rhs );
 		void			setName(std::string name);

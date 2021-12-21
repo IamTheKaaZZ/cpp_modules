@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 12:22:56 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 11:36:58 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 11:21:03 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,8 @@ ScavTrap &				ScavTrap::operator=( ScavTrap const & rhs )
 {
 	if ( this != &rhs )
 	{
-		this->_name = rhs._name;
-		this->_hitpoints = rhs._hitpoints;
-		this->_maxHP = rhs._hitpoints;
-		this->_energyPoints = rhs._energyPoints;
-		this->_maxEP = rhs._energyPoints;
-		this->_attackDamage = rhs._attackDamage;
+		ClapTrap::operator=(rhs);
+		this->_gateKeeperMode = rhs._gateKeeperMode;
 	}
 	return *this;
 }
