@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 15:07:27 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/07 16:54:38 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 12:31:43 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	main() {
 		delete animals[i];
 	}
 	Dog basic;
+	{
 	Dog tmp = basic;
+	}
 	return 0;
 }

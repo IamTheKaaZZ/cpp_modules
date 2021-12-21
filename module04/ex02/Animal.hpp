@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 12:32:01 by bcosters          #+#    #+#             */
-/*   Updated: 2021/11/30 15:04:46 by bcosters         ###   ########.fr       */
+/*   Updated: 2021/12/21 12:30:27 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class Dog : public Animal
 
 		Dog();
 		Dog( Dog const & src );
-		~Dog();
+		virtual ~Dog();
 
 		Dog &		operator=( Dog const & rhs );
 		virtual void		makeSound(void) const;
@@ -66,7 +66,7 @@ class Cat : public Animal
 
 		Cat();
 		Cat( Cat const & src );
-		~Cat();
+		virtual ~Cat();
 
 		Cat &		operator=( Cat const & rhs );
 		virtual void		makeSound(void) const;

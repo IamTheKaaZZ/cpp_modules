@@ -117,7 +117,8 @@ Dog &				Dog::operator=( Dog const & rhs )
 	if ( this != &rhs )
 	{
 		this->_type = rhs.getType();
-		this->_brain = rhs._brain;
+		delete this->_brain;
+		this->_brain = new Brain(*rhs._brain);
 	}
 	return *this;
 }
@@ -186,7 +187,8 @@ Cat &				Cat::operator=( Cat const & rhs )
 	if ( this != &rhs )
 	{
 		this->_type = rhs.getType();
-		this->_brain = rhs._brain;
+		delete this->_brain;
+		this->_brain = new Brain(*rhs._brain);
 	}
 	return *this;
 }
