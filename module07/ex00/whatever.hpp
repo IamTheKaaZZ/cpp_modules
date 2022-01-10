@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 15:42:47 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/10 16:14:31 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:51:53 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ inline void    swap(T& a, T& b) {
     b = temp;
 }
 
+// In linux this causes an amniguity when the functions are lowercase
 template<typename T>
-inline T const& min(T const& a, T const & b) {
+inline T const& Min(T const& a, T const & b) {
     return ((a < b) ? a : b);
 }
 
 template<typename T>
-inline T const& max(T const& a, T const & b) {
+inline T const& Max(T const& a, T const & b) {
     return ((a > b) ? a : b);
 }
 
