@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:48:26 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/12 11:34:39 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/01/12 14:59:20 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,27 @@
 # include <algorithm>
 # include <exception>
 # include <string>
-# include <sstream>
 
 class NotFoundException : public std::exception {
     public:
-        NotFoundException(int notFound) {
-            _ss << "The number " << notFound << " cannot be found";
-            _ss >> _msg;
+        virtual const char*	what() const throw() {
+            return ("The number cannot be found");
         }
-        virtual	const char*	what() const throw() {
-            return _msg.c_str();
-        }
-    private:
-        std::stringstream   _ss;
-        std::string         _msg;
 };
+
+template<typename T>
+int getIndex(T& cont, typename T::const_iterator it) {
+    typename T::const_iterator    bIt = cont.begin();
+    int index = std::distance(bIt, it);
+    return index;
+}
 
 template<typename T>
 typename T::const_iterator    easyfind(const T& c, const int toFind) {
     typename T::const_iterator  fIt = std::find(c.begin(), c.end(), toFind);
     if (fIt != c.end())
         return fIt;
-    else throw NotFoundException(toFind);
+    else throw NotFoundException();
 }
 
 #endif
