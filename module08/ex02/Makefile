@@ -48,7 +48,7 @@ QUIT	= \033[0m
 
 # VARIABLES
 
-NAME	=	scalarconv
+NAME	=	mutantstack
 SRCS	=	$(wildcard *.cpp)
 DIR_O	=	obj/
 OBJS	=	$(SRCS:%.cpp=obj/%.o)
