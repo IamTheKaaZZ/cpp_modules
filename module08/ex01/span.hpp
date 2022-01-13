@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:11:27 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/12 17:55:13 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/01/13 10:44:21 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ class Span {
         unsigned int        _maxN;
         unsigned int        _currentRange;
         std::vector<int>    _v;
-        std::vector<unsigned int>    _spans;
         
 };
 

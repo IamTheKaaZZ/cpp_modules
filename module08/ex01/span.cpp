@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:57:21 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/12 17:41:41 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/01/13 10:45:09 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ Span::Span() : _maxN(0), _currentRange(0) {
 
 Span::Span(unsigned int const & N) : _maxN(N), _currentRange(0) {
     cout << "Parameter constructor called" << endl;
+}
+
+Span::Span(Span const & src) :
+    _maxN(src._maxN),
+    _currentRange(src._currentRange),
+    _v(src._v) {
+    cout << "Copy constructor called" << endl;
 }
 
 Span::~Span() {
@@ -58,18 +65,6 @@ void        Span::addNumber(vIT const & b, vIT const & e) {
     if (this->_currentRange + count > this->_maxN) throw RangeTooBig();
     this->_v.insert(_v.end(), b, e);
     this->_currentRange += count;
-}
-
-void      Span::_getSpans() {
-    std::vector<int>::const_iterator  it = this->_v.begin();
-    std::vector<int>::const_iterator  ite = this->_v.end();
-    _spans.clear(); //Clear previously stored spans
-    //Add the difference between the current element and the next one to the vector
-    for(; it != ite; it++) {
-        if (it + 1 != ite -1) {
-            _spans.push_back(std::abs(*it - *(it + 1)));
-        }
-    }
 }
 
 unsigned int    Span::shortestSpan() {
