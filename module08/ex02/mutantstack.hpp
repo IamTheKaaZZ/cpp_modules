@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 18:15:44 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/13 15:40:27 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:27:21 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,38 @@
 
 using std::clog;
 using std::endl;
+
+template<class T>
+class MutantStack : public std::stack<T> {
+    public:
+        MutantStack() : std::stack<T>() {
+            clog << "Default Constructor called" << endl;
+        };
+        MutantStack(MutantStack const & src) : std::stack<T>(src) {
+            clog << "Copy Constructor called" << endl;
+        };
+        ~MutantStack() {
+            clog << "Destructor called" << endl;
+        };
+        MutantStack &  operator=(MutantStack const & rhs) {
+            if (this != &rhs) {
+                using std::stack<T>::operator=;
+            }
+            return *this;
+        };
+        typedef typename std::stack<T>::container_type::iterator iterator;
+        iterator    begin() { return this->c.begin(); };
+        iterator    end() { return this->c.end(); };
+    private:
+};
+
+template<class T>
+std::ostream &      operator<<(std::ostream & o, MutantStack<T> & s) {
+    o << "Size of this monstrosity is " << s.size() << endl;
+    if (!s.empty())
+        o << "The top element is " << s.top() << endl;
+    return o;
+}
 
 // template <class ADAPTER>
 // typename ADAPTER::container_type & get_container (ADAPTER &a)
@@ -90,37 +122,5 @@ using std::endl;
 //     private:
 //         pointer _mptr;
 // };
-
-template<class T>
-class MutantStack : public std::stack<T> {
-    public:
-        MutantStack() : std::stack<T>() {
-            clog << "Default Constructor called" << endl;
-        };
-        MutantStack(MutantStack const & src) : std::stack<T>(src) {
-            clog << "Copy Constructor called" << endl;
-        };
-        ~MutantStack() {
-            clog << "Destructor called" << endl;
-        };
-        MutantStack &  operator=(MutantStack const & rhs) {
-            if (this != &rhs) {
-                using std::stack<T>::operator=;
-            }
-            return *this;
-        };
-        typedef typename std::stack<T>::container_type::iterator iterator;
-        iterator    begin() { return this->c.begin(); };
-        iterator    end() { return this->c.end(); };
-    private:
-};
-
-template<class T>
-std::ostream &      operator<<(std::ostream & o, MutantStack<T> & s) {
-    o << "Size of this monstrosity is " << s.size() << endl;
-    if (!s.empty())
-        o << "The top element is " << s.top() << endl;
-    return o;
-}
 
 #endif
