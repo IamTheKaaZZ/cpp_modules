@@ -6,7 +6,7 @@
 /*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:53:13 by bcosters          #+#    #+#             */
-/*   Updated: 2021/12/20 13:44:56 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/04/22 16:19:05 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 #include "Double.hpp"
 
 int	main(int argc, char **argv) {
-	if (argc != 2)
+	if (argc != 2) {
 		std::cerr << "Wrong number of arguments (max 1)." << std::endl;
+		return 1;
+	}
 	std::string input(argv[1]);
 	AType*	type = NULL;
 	size_t	found;
