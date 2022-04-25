@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:11:27 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/13 10:44:21 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/04/25 11:40:54 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,15 @@ class Span {
 
         class LimitReached : public std::exception {
             public:
-            virtual const char * what() const throw() {
-                return ("Max amount of ints reached.");
-            }
+            virtual const char * what() const throw();
         };
         class RangeTooBig : public std::exception {
             public:
-            virtual const char * what() const throw() {
-                return ("Attempting to add a range that would exceed the max amount of ints.");
-            }
+            virtual const char * what() const throw();
         };
         class NoSpan : public std::exception {
             public:
-            virtual const char * what() const throw() {
-                return ("Cannot calculate the span.");
-            }
+            virtual const char * what() const throw();
         };
         Span &  operator=(Span const & rhs);
         void    addNumber(int const & i);

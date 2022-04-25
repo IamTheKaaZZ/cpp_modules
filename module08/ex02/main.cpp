@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 11:55:13 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/13 15:47:57 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/04/25 12:06:00 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <ios>
 #include <iostream>
+#include <stack>
 
 using std::cout;
 using std::endl;
@@ -39,17 +40,19 @@ int main() {
     cout << std::boolalpha << "Is MutantStack empty? -> " << mt.empty() << endl;
     MutantStack<int>::iterator  it = mt.begin();
     MutantStack<int>::iterator  ite = mt.end();
-    cout << "The stack (in order of its underlying container) contains: ";
+    cout << "The stack contains: ";
     for( ; it != ite; it++) {
         cout << ' ' << *it;
     }
     cout << endl;
     it = mt.begin();
     ite = mt.end();
-    cout << "The stack (actual order) contains: ";
+    cout << "The stack (order of underlying container) contains: ";
     std::reverse(it, ite);
     for( ; it != ite; it++) {
         cout << ' ' << *it;
     }
     cout << endl;
+
+	std::stack<int> s(mt);
 }

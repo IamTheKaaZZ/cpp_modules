@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:20:37 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/12 14:59:29 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/04/25 11:35:22 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main() {
     cout << endl;
     vIt = easyfind(v, 3);
     if (vIt != v.end())
-        cout << "Found 3 in the vector ad index: " << getIndex(v, vIt) << endl;
+        cout << "Found 3 in the vector at index: " << getIndex(v, vIt) << endl;
     cout << "The list contains:";
     for_each(l.begin(), l.end(), printInt);
     cout << endl;

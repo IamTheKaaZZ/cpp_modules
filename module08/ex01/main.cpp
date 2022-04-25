@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 17:08:16 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/12 17:58:36 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/04/25 11:47:49 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ int main() {
     sp.addNumber(3);
     sp.addNumber(17);
     cout << sp;
+    Span    sp2(5);
+    sp2.addNumber(5);
+    sp2.addNumber(3);
+    sp2.addNumber(17);
+    sp2.addNumber(9);
+    sp2.addNumber(11);
+    cout << sp2;
     std::vector<int>    reallyBig(10000);
     std::generate(reallyBig.begin(), reallyBig.end(), RandomGenerator(100));
     Span    BigBoi(10000);

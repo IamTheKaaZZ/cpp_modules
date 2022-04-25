@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcosters <bcosters@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bcosters <bcosters@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:57:21 by bcosters          #+#    #+#             */
-/*   Updated: 2022/01/13 10:45:09 by bcosters         ###   ########.fr       */
+/*   Updated: 2022/04/25 11:40:28 by bcosters         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,15 @@ std::ostream &      operator<<(std::ostream & o, Span & s) {
     o << "The shortest span is " << s.shortestSpan() << endl;
     o << "The longest span is " << s.longestSpan() << endl;
     return o;
+}
+
+//------------------------------------------//
+const char * Span::LimitReached::what() const throw() {
+    return ("Max amount of ints reached.");
+}
+const char * Span::RangeTooBig::what() const throw() {
+    return ("Attempting to add a range that would exceed the max amount of ints.");
+}
+const char * Span::NoSpan::what() const throw() {
+    return ("Cannot calculate the span.");
 }
